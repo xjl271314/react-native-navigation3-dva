@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomColor: commonStyle.normalBorderColor,
         height: 44,
-        zIndex: 10
+        zIndex: 100
     },
     defaultIcon: {
         position: 'absolute',

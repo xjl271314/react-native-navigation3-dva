@@ -11,8 +11,8 @@ import AppNavigator from './navigation'
 export const routerReducer = createNavigationReducer(AppNavigator)
 
 export const routerMiddleware = createReactNavigationReduxMiddleware(
-  'root',
-  state => state.router
+  state => state.router,
+  'root'
 )
 
 const App = createReduxContainer(AppNavigator, 'root')

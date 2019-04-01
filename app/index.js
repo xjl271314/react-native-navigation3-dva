@@ -8,7 +8,7 @@ import { name as appName } from '../app.json';
 
 const app = dva({
   initialState: {},
-  models: [],
+  models: [appModel],
   extraReducers: { router: routerReducer},
   onAction: [routerMiddleware],
   onError(e) {

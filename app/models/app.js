@@ -31,6 +31,9 @@ export default {
       yield call(Storage.set, 'login', false)
       yield put(createAction('updateState')({ login: false }))
     },
+    *test(action,{call,put}){
+      console.log(action)
+    }
   },
   subscriptions: {
     setup({ dispatch }) {

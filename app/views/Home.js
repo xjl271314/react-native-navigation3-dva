@@ -7,10 +7,13 @@ import {
   StatusBar,
   SafeAreaView
 } from 'react-native';
-import { px2dp, ifIphoneX,isIphone } from '../services/commont'
+import { px2dp, ifIphoneX, isIphone } from '../services/commont'
 import Header from '../component/MyHeader'
 import { TouchableOpacity } from '../component/MyTouchable';
 import Icon from 'react-native-vector-icons/Ionicons'
+import FindRecommendList from '../component/FindRecommendList'
+import { connect } from 'react-redux'
+
 export default class Home extends Component {
 
   constructor(props) {
@@ -21,6 +24,9 @@ export default class Home extends Component {
       StatusBar.setBarStyle('dark-content');
       !isIphone && StatusBar.setBackgroundColor('#6a51ae');
     });
+    // this.props.dispatch({
+    //   type:'app/test'
+    // })
   }
 
   componentWillUnmount() {
@@ -28,28 +34,38 @@ export default class Home extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={{flex:1,backgroundColor:'#f5f5f5'}}>
-        {/* <ScrollView style={styles.container}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
+        <Header
+          hiddenLeft
+          noborder
+          title="微信"
+          style={{
+            backgroundColor: '#f5f5f5'
+          }}
+          rightComponent={
+            <TouchableOpacity>
+              <Icon
+                name="ios-add-circle-outline"
+                color="#333"
+                size={px2dp(24)}
+              />
+            </TouchableOpacity>
+          }
+        />
+        <ScrollView style={styles.container}>
           <StatusBar
             barStyle="dark-content"
             backgroundColor="#ecf0f1"
           />
-          <FindRecommendList 
-              title="在E3《赛博朋克2077》闭门演示之后与CDPR的一次简短访谈"
-              subTitle="Writing A Good Headline For Your Advertisement" 
-              from="黑鸦社"
-              date="04.09"
-              scan="65"
-              onPress={()=>{}}
-          />
-          <FindRecommendBlock
+
+          {/*<FindRecommendBlock
               data={[1,2]}
               title="《狱门山物语》：难得一见的高品质和风STG"
               date="2小时前"
               scan="65"
               onPress={(e)=>{console.log(e)}}
           />
-          <FindHYList 
+           <FindHYList 
               title="【中古放映机】禁忌的血亲之恋，冬目景与《羊之歌》"
               date="2小时前"
               scan="65"
@@ -93,27 +109,21 @@ export default class Home extends Component {
             <View style={styles.button}>
               <Text style={styles.text}>点击显示登录页</Text>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback> */}
 
-        </ScrollView> */}
-        <Header 
-          hiddenLeft
-          noborder
-          title="微信"
-          style={{
-            backgroundColor:'#f5f5f5'
-          }}
-          rightComponent={
-             <TouchableOpacity>
-                  <Icon 
-                    name="ios-add-circle-outline"
-                    color="#333"
-                    size={px2dp(24)}
-                  />
-             </TouchableOpacity>  
-          }
-        />
-      </SafeAreaView>  
+
+
+          <FindRecommendList
+            title="在E3《赛博朋克2077》闭门演示之后与CDPR的一次简短访谈"
+            subTitle="Writing A Good Headline For Your Advertisement"
+            from="黑鸦社"
+            date="04.09"
+            scan="65"
+            onPress={() => { }}
+          />
+          <Text></Text>
+        </ScrollView>
+      </SafeAreaView>
     )
   }
 }
