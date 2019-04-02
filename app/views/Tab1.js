@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View,StatusBar } from 'react-native';
-import { px2dp, isIphone } from '../services/commont'
+import { px2dp, isIphone } from '../libs/commont'
 
 export default class Tab1Screen extends React.Component {
   componentDidMount() {

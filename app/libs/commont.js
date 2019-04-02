@@ -17,7 +17,7 @@ function formatNumber(n) {
     return n[1] ? n : '0' + n
 }
 
-export function formatDate(date, type) {
+export function formatDate(date, format = "YYYY-MM-DD", separator) {
     var year = date.getFullYear()
     var month = date.getMonth() + 1
     var day = date.getDate()
@@ -26,16 +26,23 @@ export function formatDate(date, type) {
     var minute = date.getMinutes()
     var second = date.getSeconds()
 
-    if (type = 'YYYY-MM-DD') {
-        return [year, month, day].map(formatNumber).join('-')
-    }
-    else {
-        return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-    }
+    // if (type = 'YYYY-MM-DD') {
+    //     return [year, month, day].map(formatNumber).join(separator || '-')
+    // }
+    // else if(type){
+    //     return [year, month, day].map(formatNumber).join(separator || '-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+    // }
+    format.replace('YYYY', date.getFullYear())
+        .replace('MM', formatNumber(month))
+        .replace('DD', formatNumber(day))
+        .replace('HH', formatNumber(hour))
+        .replace('mm', formatNumber(Minute))
+        .replace('ss', formatNumber(Seconds));
+
+    return format;
 }
 
 //获取屏幕的实际宽度
-
 export const deviceW = Dimensions.get('window').width;
 export const deviceH = Dimensions.get('window').height;
 
@@ -139,55 +146,14 @@ export function bankCardLastNum(cardCode, digit) {
     return cardCode.substring(cardCode.length - digit, cardCode.length)
 }
 
-/**
-*获取react-native-element元素的宽度和高度等信息
-* @param ref:ref 组件ref
-*/
-
-export function getRnElementInfo(ref) {
-    const handle = findNodeHandle(ref);
-    return new Promise((resolve) => {
-        UIManager.measure(handle, (x, y, width, height, pageX, pageY) => {
-            resolve({
-                x,
-                y,
-                width,
-                height,
-                pageX,
-                pageY
-            });
-        });
-    });
-}
-
 /** 
  * 返回银行卡号，每隔四个数字添加一个空格
  * @param str:string
 
 */
-// replace(/.(?=.)/,`*`)
 export function formatBankCard(str) {
     let newStr = str.replace(/\d(?=(?:\d{4})+\b)/g, `$& `);
-    // let subStr = String(newStr).subStr(0,len-4)
     return String(newStr)
-}
-
-/** 
- * 返回格式化后的银行卡号 格式为保留银行卡后后几位，前面都显示为*号
- * @param bankCardNum:string
- * @param num:number
-*/
-// replace(/.(?=.)/,`*`)
-export function secretBankCard(bankCardNum, num = 4) {
-    console.log(bankCardNum)
-    let len = bankCardNum.length;
-    console.log(len)
-    let str1 = bankCardNum.substring(0, len - num);
-    console.log(str1)
-    let str2 = bankCardNum.substring(len - num)
-    console.log(str2)
-
-    return str1 + str2
 }
 
 /**
@@ -222,167 +188,28 @@ export function DatePickerMaxDate() {
 
 }
 
-// 添加 图片到相册
-export function saveImage(imgsrc, imgname) {
-    return new Promise((resolve, reject) => {
-        const Update = NativeModules.UpdateManager;
-        const modelAlert = new Comclass().alert;
-        let imgpath = '';
-        if (imgname) {
-            imgpath = /[\.jpg|\.png|\.jpeg|\.gif]$/.test(imgname) ? RNFS.CachesDirectoryPath + '/' + imgname : RNFS.CachesDirectoryPath + '/' + imgname + '.png';
-        } else {
-            imgpath = RNFS.CachesDirectoryPath + '/save_.png';
-        }
-        if (RNFS) {
-            try {
-                RNFS.exists(imgpath).then((e) => {
-                    if (e) {
-                        RNFS.unlink(imgpath)
-                            .then((e) => {
-                                RNFS.writeFile(imgpath, imgsrc, 'base64')
-                                    .then((success) => {
-                                        const promise2 = CameraRoll.saveToCameraRoll(imgpath);
-                                        if (promise2 && promise2 != "undefined") {
-                                            promise2.then((result) => {
-                                                resolve('已保存到相册');
-                                            }, (err) => {
-                                                if (Platform.OS == "android") {
-                                                    modelAlert({
-                                                        title: "请到权限管理开启再试", titletext: "存储权限未开启，", oktext: "去设置", onOk: () => {
-                                                            Update.open("2");
-                                                        }
-                                                    });
-                                                } else {
-                                                    Toast.fail('请先开启权限再试', 5);
-                                                }
-                                                reject("请先开启权限再试");
-                                            });
-                                        } else {
-                                            if (Platform.OS == "android") {
-                                                modelAlert({
-                                                    title: "请到权限管理开启再试", titletext: "存储权限未开启，", oktext: "去设置", onOk: () => {
-                                                        Update.open("2");
-                                                    }
-                                                });
-                                            } else {
-                                                Toast.fail('请先开启权限再试', 5);
-                                            }
-                                            reject("请先开启权限再试");
-                                        }
-                                    });
-                            })
-                            .catch((err) => {
-                                if (Platform.OS == "android") {
-                                    modelAlert({
-                                        title: "请到权限管理开启再试", titletext: "存储权限未开启，", oktext: "去设置", onOk: () => {
-                                            Update.open("2");
-                                        }
-                                    });
-                                } else {
-                                    Toast.fail('请先开启权限再试', 5);
-                                }
-                                reject("请先开启权限再试");
-                            });
-                    } else {
-                        RNFS.writeFile(imgpath, imgsrc, 'base64')
-                            .then((success) => {
-                                const promise2 = CameraRoll.saveToCameraRoll(imgpath);
-                                if (promise2 && promise2 != "undefined") {
-                                    promise2.then((result) => {
-                                        resolve('已保存到相册');
-                                    }, (err) => {
-                                        if (Platform.OS == "android") {
-                                            modelAlert({
-                                                title: "请到权限管理开启再试", titletext: "存储权限未开启，", oktext: "去设置", onOk: () => {
-                                                    Update.open("2");
-                                                }
-                                            });
-                                        } else {
-                                            Toast.fail('请先开启权限再试', 5);
-                                        }
-                                        reject("请先开启权限再试");
-                                    }).catch((error) => {
-                                        if (Platform.OS == "android") {
-                                            modelAlert({
-                                                title: "请到权限管理开启再试", titletext: "存储权限未开启，", oktext: "去设置", onOk: () => {
-                                                    Update.open("2");
-                                                }
-                                            });
-                                        } else {
-                                            Toast.fail('请先开启权限再试', 5);
-                                        }
-                                        reject("请先开启权限再试");
-                                    });
-                                } else {
-                                    if (Platform.OS == "android") {
-                                        modelAlert({
-                                            title: "请到权限管理开启再试", titletext: "存储权限未开启，", oktext: "去设置", onOk: () => {
-                                                Update.open("2");
-                                            }
-                                        });
-                                    } else {
-                                        Toast.fail('请先开启权限再试', 5);
-                                    }
-                                    reject("请先开启权限再试");
-                                }
-                            })
-                    }
-                });
-            } catch (e) {
-                if (Platform.OS == "android") {
-                    modelAlert({
-                        title: "请到权限管理开启再试", titletext: "存储权限未开启，", oktext: "去设置", onOk: () => {
-                            Update.open("2");
-                        }
-                    });
-                } else {
-                    Toast.fail('请先开启权限再试', 5);
-                }
-                reject("请先开启权限再试");
-            }
-        }
-    })
-
-}
-
-
-//处理后台返回的字符串类型value转化为ant支持的array类型的value
-
-export function string2AntArray(str) {
-   str = str+'';
-   const a = [];
-   if(str&&str.length == 1){
-       return Array.from(str)
-   }
-   else{
-      a.push(String(str))
-      return a
-   }
-}
-
-
-export function handleParams(path){
+export function handleParams(path) {
     let paramsArr = []
     let params = {}
-    if(path.indexOf('?')){
-      let tmp = path.split('?')
-      path = tmp[0]
-      paramsArr = tmp[1] ? tmp[1].split('&') : []
+    if (path.indexOf('?')) {
+        let tmp = path.split('?')
+        path = tmp[0]
+        paramsArr = tmp[1] ? tmp[1].split('&') : []
     }
-  
+
     paramsArr.forEach(item => {
-      let acc = item.split('=')
-      params[acc[0]] = acc[1]
+        let acc = item.split('=')
+        params[acc[0]] = acc[1]
     })
-  
+
     return [path, params]
 }
 
 //一维数组转化为指定维度的二维数组
-export function TwoDimensionArray(arr,dimension){
+export function TwoDimensionArray(arr, dimension) {
     let result = []
-    for(var i = 0; i<arr.length; i+=dimension){
-        result.push(arr.slice(i,i+dimension))
+    for (var i = 0; i < arr.length; i += dimension) {
+        result.push(arr.slice(i, i + dimension))
     }
     return result
 }

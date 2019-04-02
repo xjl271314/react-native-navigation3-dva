@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native'
-import { px2dp, isIphone } from './../services/commont'
+import { px2dp, isIphone } from './../libs/commont'
 import commonStyle from '../libs/commonStyle'
 import TouchButton from '../component/TouchButton'
 

@@ -33,7 +33,7 @@ export default Tabs = createBottomTabNavigator({
             tabBarIcon: ({ tintColor }) => (
                 <Tab1Icon
                     name='message1'
-                    size={18}
+                    size={22}
                     color={tintColor}
                 />
             ),
@@ -46,7 +46,7 @@ export default Tabs = createBottomTabNavigator({
             tabBarIcon: ({ tintColor }) => (
                 <Tab2Icon
                     name='solution1'
-                    size={18}
+                    size={22}
                     color={tintColor}
                 />
             ),
@@ -59,7 +59,7 @@ export default Tabs = createBottomTabNavigator({
             tabBarIcon: ({ tintColor }) => (
                 <Tab2Icon
                     name='search1'
-                    size={18}
+                    size={22}
                     color={tintColor}
                 />
             ),
@@ -68,11 +68,11 @@ export default Tabs = createBottomTabNavigator({
     tab3: {
         screen: Tab3Screen,
         navigationOptions: {
-            tabBarLabel: '我',
+            tabBarLabel: '我的',
             tabBarIcon: ({ tintColor }) => (
                 <Tab2Icon
                     name='user'
-                    size={18}
+                    size={22}
                     color={tintColor}
                 />
             ),
@@ -87,7 +87,7 @@ export default Tabs = createBottomTabNavigator({
         initialRouteName: 'Home',
         tabBarOptions: {
             activeTintColor: '#0f9b0f', // 文字和图片选中颜色
-            inactiveTintColor: '#ccc', // 文字和图片未选中颜色
+            inactiveTintColor: '#999', // 文字和图片未选中颜色
             showIcon: true, // android 默认不显示 icon, 需要设置为 true 才会显示
             indicatorStyle: {
                 height: 0  // 如TabBar下面显示有一条线，可以设高度为0后隐藏
@@ -97,7 +97,7 @@ export default Tabs = createBottomTabNavigator({
                 height: 50
             },
             labelStyle: {
-                fontSize: 10, // 文字大小
+                fontSize: 12, // 文字大小
             }
         }
     })

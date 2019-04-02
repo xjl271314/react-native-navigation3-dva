@@ -21,7 +21,7 @@ import FindRecommendBlock from '../component/FindRecommendBlock'
 import FindHYList from '../component/FindHYList'
 import FindMGTXList from '../component/FindMGTXList'
 import FindArticleDetail from '../component/FindArticleDetail'
-import { px2dp, ifIphoneX } from '../services/commont'
+import { px2dp, ifIphoneX } from '../libs/commont'
 
 
 class BackButton extends React.Component {

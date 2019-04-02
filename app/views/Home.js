@@ -7,26 +7,41 @@ import {
   StatusBar,
   SafeAreaView
 } from 'react-native';
-import { px2dp, ifIphoneX, isIphone } from '../services/commont'
-import Header from '../component/MyHeader'
-import { TouchableOpacity } from '../component/MyTouchable';
-import Icon from 'react-native-vector-icons/Ionicons'
-import FindRecommendList from '../component/FindRecommendList'
+import { createAction } from '../utils'
 import { connect } from 'react-redux'
+import { px2dp, ifIphoneX, isIphone } from '../libs/commont'
+import { TouchableOpacity } from '../component/MyTouchable';
+import FindRecommendList from '../component/FindRecommendList'
+import FlatList from '../component/FlatList'
+import TextInput from '../component/TextInput'
+import Header from '../component/MyHeader'
+import Icon from 'react-native-vector-icons/Ionicons'
 
+
+@connect(({ app, home }) => ({
+  login: app.login,
+  chatList: home.chatList
+}))
 export default class Home extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      
+    }
   }
   componentDidMount() {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
       StatusBar.setBarStyle('dark-content');
       !isIphone && StatusBar.setBackgroundColor('#6a51ae');
     });
-    // this.props.dispatch({
-    //   type:'app/test'
-    // })
+    // 获取聊天列表
+    this.props.dispatch(createAction('home/loadChatList')(
+      {
+        currentPage:0,
+        pageSize:10
+      }
+    ))
   }
 
   componentWillUnmount() {
@@ -57,6 +72,20 @@ export default class Home extends Component {
             barStyle="dark-content"
             backgroundColor="#ecf0f1"
           />
+
+          {/* <FlatList 
+              data={[{title: 'Title Text', key: 'item1'}]}
+              renderItem={({item, separators}) => (
+                <TouchableOpacity
+                  onPress={() => console.log(item)}
+                  onShowUnderlay={separators.highlight}
+                  onHideUnderlay={separators.unhighlight}>
+                  <View style={{backgroundColor: 'white'}}>
+                    <Text>{item.title}</Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+          /> */}
 
           {/*<FindRecommendBlock
               data={[1,2]}
@@ -130,7 +159,7 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#e5e5e5',
+    backgroundColor: '#FFF',
     flex: 1
   },
   button: {

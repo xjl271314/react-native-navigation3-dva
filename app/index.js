@@ -1,14 +1,21 @@
 import React from 'react'
 import { AppRegistry } from 'react-native'
-
+import { AsyncStorage } from '@react-native-community/async-storage'
 import dva from './utils/dva'
 import Router, { routerMiddleware, routerReducer } from './router'
-import appModel from './models/app'
 import { name as appName } from '../app.json';
+
+
+// 加载所有models
+import appModel from './models/app'
+import homeModel from './models/home'
 
 const app = dva({
   initialState: {},
-  models: [appModel],
+  models: [
+    appModel,
+    homeModel
+  ],
   extraReducers: { router: routerReducer},
   onAction: [routerMiddleware],
   onError(e) {
