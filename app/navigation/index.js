@@ -9,6 +9,13 @@ import DiscoveryPage from '../views/Discovery'
 import LoginPage from '../views/Login'
 
 const MainStack = createStackNavigator({
+    Login:{
+        screen:LoginPage,
+        navigationOptions: ({ navigation }) => ({
+            header: null
+        }),
+
+    },
     Home: {
         screen: Tabs,
         navigationOptions: ({ navigation }) => ({
@@ -20,7 +27,7 @@ const MainStack = createStackNavigator({
     }
 
 }, {
-        initialRouteName: 'Home',
+        initialRouteName: 'Login',
         navigationOptions: ({ navigation }) => ({
             headerStyle: {
                 backgroundColor: '#f4511e',

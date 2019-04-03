@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   },
 });
 
+
 export default MyDrawTable = createDrawerNavigator({
   Home: {
     screen: HomeScreen,

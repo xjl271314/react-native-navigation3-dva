@@ -78,8 +78,7 @@ export default class FlatList extends Component {
                     if (this.state.enptyComponentHeight < height) {
                         this.setState({ enptyComponentHeight: height })
                     }
-                }
-                }
+                }}
                 refreshControl={
                     <RefreshControl
                         refreshing={refreshing}
