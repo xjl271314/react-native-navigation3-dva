@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage } from '@react-native-community/async-storage'
 
 function clear() {
   return AsyncStorage.clear()
@@ -6,7 +6,7 @@ function clear() {
 
 function get(key, defaultValue = null) {
   return AsyncStorage.getItem(key).then(
-    value => (value !== null ? JSON.parse(value) : defaultValue)
+    value => (value !== null && value !== undefined  ? JSON.parse(value) : defaultValue)
   )
 }
 

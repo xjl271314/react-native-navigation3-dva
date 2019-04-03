@@ -19,6 +19,7 @@ import Ellipsis from '../component/Ellipsis'
 import Icon from 'react-native-vector-icons/Ionicons'
 import commonStyle from '../libs/commonStyle'
 import Badge from '../component/Badge'
+import FindRecommendBlock from '../component/FindRecommendBlock'
 
 @connect(({ app, home }) => ({
   login: app.login,
@@ -89,7 +90,13 @@ export default class Home extends Component {
             </TouchableOpacity>
           }
         />
-
+        <FindRecommendBlock
+          data={[1, 2]}
+          title="《狱门山物语》：难得一见的高品质和风STG"
+          date="2小时前"
+          scan="65"
+          onPress={(e) => { console.log(e) }}
+        />
         <FlatList
           style={styles.container}
           data={chatList}
@@ -174,7 +181,7 @@ const ChatItem = props => {
   const { index, item, separators } = props.dataSource
   return (
     <TouchableHighlight
-      onPress={props.onPress.bind(this,{index,item})}
+      onPress={props.onPress.bind(this, { index, item })}
     >
       <View style={{
         flexDirection: 'row',
