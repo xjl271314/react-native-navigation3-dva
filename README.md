@@ -15,6 +15,7 @@
 
 2.采用mock.js自己编写
 
+本项目暂时使用mockjs自己编写
 
 #### async storage 
 采用 @react-native-community/async-storage
@@ -28,4 +29,6 @@ Async Storage has been extracted from react-native core and will be removed in a
 
 图片命名的时候不要重名,不然iOS打包的时候会报错
 
-ios开发真机调试的话 请修改Libraries——>RCTWebScoket.xcodeproj文件下的RCTWebScoketExecutor以及RCTBundleURLProvider.m文件  修改localhost为本机ip 192.168.x.x
+ios开发真机调试的话 如遇无法连接chrome debug问题
+
+请修改Libraries——>RCTWebScoket.xcodeproj文件下的RCTWebScoketExecutor以及RCTBundleURLProvider.m文件  修改localhost为本机ip 192.168.x.x

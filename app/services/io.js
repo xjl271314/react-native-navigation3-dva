@@ -18,7 +18,6 @@ function get(config) {
     return Axios.get(config.url, {
         params
     }).then(result => {
-        cosnole.log(result,222)
         return result.data
     }, err => {
         if (!err || !err.response) {

@@ -213,3 +213,22 @@ export function TwoDimensionArray(arr, dimension) {
     }
     return result
 }
+
+
+//获取UI组件的宽高和位置信息
+export function layout(ref) {
+    const handle = findNodeHandle(ref);
+     
+    return new Promise((resolve) => {
+        UIManager.measure(handle, (x, y, width, height, pageX, pageY) => {
+            resolve({
+                x,
+                y,
+                width,
+                height,
+                pageX,
+                pageY
+            });
+        });
+    });
+}

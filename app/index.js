@@ -4,7 +4,8 @@ import { AsyncStorage } from '@react-native-community/async-storage'
 import dva from './utils/dva'
 import Router, { routerMiddleware, routerReducer } from './router'
 import { name as appName } from '../app.json';
-
+// mock环境加载
+import './mock'
 
 // 加载所有models
 import appModel from './models/app'

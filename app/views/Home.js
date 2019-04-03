@@ -3,33 +3,33 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
+  SafeAreaView,
+  Image,
   StatusBar,
-  SafeAreaView
+  ImageBackground
 } from 'react-native';
 import { createAction } from '../utils'
 import { connect } from 'react-redux'
 import { px2dp, ifIphoneX, isIphone } from '../libs/commont'
-import { TouchableOpacity } from '../component/MyTouchable';
-import FindRecommendList from '../component/FindRecommendList'
+import { TouchableOpacity, TouchableHighlight } from '../component/MyTouchable';
 import FlatList from '../component/FlatList'
 import TextInput from '../component/TextInput'
 import Header from '../component/MyHeader'
+import Ellipsis from '../component/Ellipsis'
 import Icon from 'react-native-vector-icons/Ionicons'
-
+import commonStyle from '../libs/commonStyle'
+import Badge from '../component/Badge'
 
 @connect(({ app, home }) => ({
   login: app.login,
-  chatList: home.chatList
+  chatList: home.chatList,
+  currentPage: home.chatPage,
+  pageSize: home.chatPageSize,
+  isLoading: home.isLoading,
+  chatLoadEnd: home.chatLoadEnd,
+  isRefresh: home.isRefresh
 }))
 export default class Home extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      
-    }
-  }
   componentDidMount() {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
       StatusBar.setBarStyle('dark-content');
@@ -38,8 +38,8 @@ export default class Home extends Component {
     // 获取聊天列表
     this.props.dispatch(createAction('home/loadChatList')(
       {
-        currentPage:0,
-        pageSize:10
+        currentPage: 0,
+        pageSize: this.props.pageSize
       }
     ))
   }
@@ -47,7 +47,29 @@ export default class Home extends Component {
   componentWillUnmount() {
     this._navListener.remove();
   }
+
+  onEndReached = () => {
+    const {
+      currentPage,
+      pageSize
+    } = this.props
+    this.props.dispatch(createAction('home/loadChatList')(
+      {
+        currentPage,
+        pageSize
+      }
+    ))
+  }
+  onRefresh = () => {
+    this.props.dispatch(createAction('home/refreshChatList')())
+  }
+
+  itemPress = (e) => {
+    console.log(e)
+  }
+
   render() {
+    const { chatList, chatLoadEnd, isRefresh } = this.props
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
         <Header
@@ -67,27 +89,18 @@ export default class Home extends Component {
             </TouchableOpacity>
           }
         />
-        <ScrollView style={styles.container}>
-          <StatusBar
-            barStyle="dark-content"
-            backgroundColor="#ecf0f1"
-          />
 
-          {/* <FlatList 
-              data={[{title: 'Title Text', key: 'item1'}]}
-              renderItem={({item, separators}) => (
-                <TouchableOpacity
-                  onPress={() => console.log(item)}
-                  onShowUnderlay={separators.highlight}
-                  onHideUnderlay={separators.unhighlight}>
-                  <View style={{backgroundColor: 'white'}}>
-                    <Text>{item.title}</Text>
-                  </View>
-                </TouchableOpacity>
-              )}
-          /> */}
+        <FlatList
+          style={styles.container}
+          data={chatList}
+          refreshing={isRefresh}
+          renderItem={item => <ChatItem dataSource={item} onPress={this.itemPress} />}
+          onRefresh={this.onRefresh}
+          loadEnd={chatLoadEnd}
+          onEndReached={this.onEndReached}
+        />
 
-          {/*<FindRecommendBlock
+        {/*<FindRecommendBlock
               data={[1,2]}
               title="《狱门山物语》：难得一见的高品质和风STG"
               date="2小时前"
@@ -142,25 +155,84 @@ export default class Home extends Component {
 
 
 
-          <FindRecommendList
+        {/* <FindRecommendList
             title="在E3《赛博朋克2077》闭门演示之后与CDPR的一次简短访谈"
             subTitle="Writing A Good Headline For Your Advertisement"
             from="黑鸦社"
             date="04.09"
             scan="65"
             onPress={() => { }}
-          />
-          <Text></Text>
-        </ScrollView>
+          /> */}
+
       </SafeAreaView>
     )
   }
 }
 
+
+const ChatItem = props => {
+  const { index, item, separators } = props.dataSource
+  return (
+    <TouchableHighlight
+      onPress={props.onPress.bind(this,{index,item})}
+    >
+      <View style={{
+        flexDirection: 'row',
+        paddingTop: px2dp(15),
+        paddingLeft: px2dp(20),
+        alignItems: 'flex-start'
+      }}>
+        <View style={{ borderRadius: 3, }}>
+          <ImageBackground
+            source={{ uri: item.img }}
+            style={{
+              width: px2dp(40),
+              height: px2dp(40),
+              marginRight: px2dp(15)
+            }}
+            imageStyle={{ borderRadius: 3 }}
+          >
+            <Badge
+              count={9}
+              size="small"
+            />
+          </ImageBackground>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            height: '100%',
+            paddingRight: px2dp(15),
+            paddingBottom: px2dp(15),
+            borderBottomColor: commonStyle.normalBorderColor,
+            borderBottomWidth: commonStyle.halfBorderWidth
+          }}
+        >
+          <View style={commonStyle.flexRowBetween}>
+            <Ellipsis style={{
+              fontFamily: 'PingFangSC-Medium',
+              marginBottom: px2dp(6),
+              color: '#333'
+            }}>{item.title}</Ellipsis>
+            <Text style={{
+              fontSize: px2dp(12),
+              color: '#999'
+            }}>{item.time}</Text>
+          </View>
+          <Ellipsis style={{
+            paddingRight: px2dp(30)
+          }}>{item.desc}</Ellipsis>
+        </View>
+
+
+      </View>
+    </TouchableHighlight>
+  )
+}
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFF',
-    flex: 1
   },
   button: {
     marginTop: 30,

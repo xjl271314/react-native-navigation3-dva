@@ -4,9 +4,13 @@ import {
     PixelRatio
 } from 'react-native'
 module.exports={
-    underlayColor:'#1693F7',    //TouchableHighlight触摸底色 color
+    underlayColor:'#eee',    //TouchableHighlight触摸底色 color
     activeOpacity:0.9,          //TouchableHighlight透明度 Number,
-    normalBorderColor:'#E5E5E5',
-    halfBorderWidth:1 / PixelRatio.get() //1dp
-    
+    normalBorderColor:'#EEE',
+    halfBorderWidth:1 / PixelRatio.get(), //1dp
+    flexRowBetween:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    }
 }

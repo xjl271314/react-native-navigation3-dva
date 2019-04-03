@@ -4,7 +4,8 @@ import {
     TouchableHighlight as RNTouchableHighlight,
     TouchableOpacity as RNTouchableOpacity
 } from "react-native";
- 
+import commonStyle from '../libs/commonStyle'
+
 export class TouchableWithoutFeedback extends Component {
     constructor(props) {
         super(props)
@@ -104,6 +105,7 @@ export class TouchableHighlight extends Component {
                 {...this.props}
                 onPress={this.onPress.bind(this)}
                 activeOpacity={this.props.activeOpacity || 0.85}
+                underlayColor={this.props.underlayColor || commonStyle.underlayColor}
                 style={this.props.style}
                 disabled={this.props.disabled}
                 
