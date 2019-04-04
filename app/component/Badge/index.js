@@ -80,6 +80,7 @@ const Badge = (props) => {
             {...props}
             onLayout={(e) => _onLayout(e)}
             style={[
+                { ...props.style },
                 styles.Badge,
                 { ...size },
                 {
@@ -96,7 +97,6 @@ const Badge = (props) => {
                         translate: [defaultWidth/2, -size.height / 2 || -props.style.height / 2]
                     }]
                 },
-                { ...props.style }
             ]}
         >
             {showIcon || count > 0 ?

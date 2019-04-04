@@ -8,12 +8,13 @@ import {
     StyleSheet
 } from 'react-native'
 import commonStyle from '../../libs/commonStyle'
+import { px2dp } from '../../libs/commont';
 
 const TextInput = (props) =>{
     return(
         <RNTextInput
-            style={styles.TextInput}
             {...props}
+            style={[styles.TextInput,props.style]}
             
         />
     )
@@ -21,7 +22,10 @@ const TextInput = (props) =>{
 
 const styles = StyleSheet.create({
     TextInput:{
+        padding:0,//fix android
         height:55,
+        color:'#999',
+        fontSize:px2dp(20),
         borderBottomWidth: commonStyle.halfBorderWidth,
         borderBottomColor: commonStyle.normalBorderColor,
     }
