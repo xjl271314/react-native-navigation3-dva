@@ -1,24 +1,20 @@
-import { 
+import {
     createStackNavigator,
-    createAppContainer
+    createAppContainer,
+    createSwitchNavigator
 } from 'react-navigation';
-import Tabs from '../views/Tabs'
+import Tabs from './tabs/Tabs'
 
 import HomePage from '../views/Home';
 import DiscoveryPage from '../views/Discovery'
 import LoginPage from '../views/Login'
 
-const MainStack = createStackNavigator({
-    Login:{
-        screen:LoginPage,
-        navigationOptions: ({ navigation }) => ({
-            header: null
-        }),
-
-    },
+const AppStack = createStackNavigator({
     Home: {
         screen: Tabs,
-        navigationOptions: ({ navigation }) => ({
+        navigationOptions: ({
+            navigation
+        }) => ({
             header: null
         })
     },
@@ -27,8 +23,11 @@ const MainStack = createStackNavigator({
     }
 
 }, {
-        initialRouteName: 'Login',
-        navigationOptions: ({ navigation }) => ({
+        initialRouteName: 'Home',
+        initialRouteParams: {}, //初始化参数
+        navigationOptions: ({
+            navigation
+        }) => ({
             headerStyle: {
                 backgroundColor: '#f4511e',
             },
@@ -38,24 +37,21 @@ const MainStack = createStackNavigator({
             },
             gesturesEnabled: true
         })
-    }
-);
+    });
 
-//所有视图页面和全屏视图页面
-const RootStack = createStackNavigator(
-    {
-        Main: {
-            screen: MainStack,
-        },
-        Login: {
-            screen: LoginPage
-        }
+// 认证页面
+const AuthStack = createStackNavigator({
+    Login: {
+        screen: LoginPage
     },
-    {
-        mode: 'modal',
-        headerMode: 'none'
-    }
+});
 
-);
+// 配置只有登录后才会显示tab页面
+const RootStack = createSwitchNavigator({
+    Auth: AuthStack,
+    App: AppStack,
+}, {
+        initialRouteName: 'Auth'
+    });
 
 export default createAppContainer(RootStack);

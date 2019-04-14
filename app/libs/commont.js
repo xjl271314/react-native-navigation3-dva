@@ -26,12 +26,6 @@ export function formatDate(date, format = "YYYY-MM-DD", separator) {
     var minute = date.getMinutes()
     var second = date.getSeconds()
 
-    // if (type = 'YYYY-MM-DD') {
-    //     return [year, month, day].map(formatNumber).join(separator || '-')
-    // }
-    // else if(type){
-    //     return [year, month, day].map(formatNumber).join(separator || '-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-    // }
     format.replace('YYYY', date.getFullYear())
         .replace('MM', formatNumber(month))
         .replace('DD', formatNumber(day))

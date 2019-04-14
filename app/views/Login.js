@@ -48,13 +48,29 @@ const Footer = () => (
 )
 
 export default class Login extends Component {
+
+    constructor(props){
+        super(props)
+        this.judgeLogin()
+    }
+    static navigationOptions = {
+        header:null
+    }
+
     state = {
         account: '',
         password: ''
     }
-
+    
+    async judgeLogin(){
+        let isLogin = await AsyncStorage.getItem('login')
+        if(isLogin){
+            this.props.navigation.navigate('Home')
+        }
+    }
     render() {
         const { account, password } = this.state
+        const { state } = this.props.navigation
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.viewContainer}>

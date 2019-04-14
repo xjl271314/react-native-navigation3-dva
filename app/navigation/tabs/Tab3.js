@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View,StatusBar,TouchableOpacity } from 'react-native';
-import { px2dp, isIphone } from '../libs/commont'
-import { NativePrintStr } from '../libs/NativeBridge'
+import { px2dp, isIphone } from '../../libs/commont'
+import { NativePrintStr } from '../../libs/NativeBridge'
 
 export default class Tab3Screen extends React.Component {
   componentDidMount() {
