@@ -93,6 +93,12 @@ export default MyDrawTable = createDrawerNavigator({
     contentComponent: (props) => (
       <ScrollView style={{ backgroundColor: '#FFF', flex: 1 }}>
         <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+          <View style={{
+            height:100,
+            backgroundColor:'#179B16'
+          }}>
+            <Text>我是其他位置区域</Text>
+          </View>
           <DrawerItems {...props} />
         </SafeAreaView>
       </ScrollView>

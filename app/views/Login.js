@@ -68,6 +68,9 @@ export default class Login extends Component {
             this.props.navigation.navigate('Home')
         }
     }
+    login=()=>{
+        AsyncStorage.setItem('login','111')
+    }
     render() {
         const { account, password } = this.state
         const { state } = this.props.navigation
@@ -100,6 +103,7 @@ export default class Login extends Component {
                         <Button
                             style={styles.loginButton}
                             underlayColor="#52c41a"
+                            onPress={this.login}
                         >
                             <Text style={styles.loginButtontext}>登录</Text>
                         </Button>
