@@ -11,8 +11,16 @@ const BTEventEmitter = NativeModules.BTEventEmitter
  *   str:要输出的字符串
  * } 
  */
-export async function NativePrintStr(params) {
-
-console.log(BTEventEmitter)
-    return await BTEventEmitter.NativePrintStr(params)
+export async function NativePrintStr(str) {
+    return await BTEventEmitter.NativePrintStr(str)
 }
+
+/**
+ * toast轻提示
+ *
+ * @export
+ * @param
+ * {
+ *   text:要提示的文案
+ * } 
+ */
