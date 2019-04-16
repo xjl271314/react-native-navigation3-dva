@@ -38,7 +38,6 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* rnBaseAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* rnBaseAppTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
-		33964B3A2264AFDB00F80571 /* BTEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 33964B392264AFDB00F80571 /* BTEventEmitter.m */; };
 		4A5DB088376F41CBBA4DE745 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B17C755A107849229D353BAA /* FontAwesome5_Solid.ttf */; };
 		4F38DABE638E4079A23B4B74 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE8F41AF75EA4159A12D600A /* Octicons.ttf */; };
 		55BDAD76AD7945B1ABC4E790 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD14DD6BA3DB4165BE717C82 /* libRNVectorIcons.a */; };
@@ -56,7 +55,7 @@
 		B1C6BF320C274270B1005857 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3015FB478E284643B450BF50 /* Entypo.ttf */; };
 		B5D641A6F1824D5CA8E57FFF /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 849037D3BE40468BAC4EFCF4 /* libRNGestureHandler-tvOS.a */; };
 		BEF513B71AD54ED0983F276E /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C3ED9E93714985B64306EB /* libRNVectorIcons-tvOS.a */; };
-		C1C978E0226491F300FABB20 /* RCTBTEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C978DF226491F300FABB20 /* RCTBTEventEmitter.m */; };
+		C159E85F2265D7700028E9E0 /* BTEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C159E85E2265D7700028E9E0 /* BTEventEmitter.m */; };
 		D5BFA4C5D75849BDAB750735 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74BDAFC035544358B9D4E63A /* MaterialIcons.ttf */; };
 		DE512C12A82A4C8B826B7072 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87D1B730F6F24EA094B8BE83 /* FontAwesome5_Regular.ttf */; };
 		E9A82358378141589519AEB2 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F510A881F3C4525A2E9B499 /* Feather.ttf */; };
@@ -416,8 +415,6 @@
 		2D02E4901E0B4A5D006451C7 /* rnBaseApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rnBaseApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3015FB478E284643B450BF50 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		33964B382264AFDB00F80571 /* BTEventEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BTEventEmitter.h; path = rnBaseApp/BTEventEmitter.h; sourceTree = "<group>"; };
-		33964B392264AFDB00F80571 /* BTEventEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BTEventEmitter.m; path = rnBaseApp/BTEventEmitter.m; sourceTree = "<group>"; };
 		3E4B4C754E7546ED9BC407D4 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		407C8FBAFDCE4703AFABFAAF /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		522AF5C871694595A923CCEC /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
@@ -439,8 +436,8 @@
 		B529CC2147C648129483BFD0 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		B5C3ED9E93714985B64306EB /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
 		BE8F41AF75EA4159A12D600A /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		C1C978DE226491F300FABB20 /* RCTBTEventEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RCTBTEventEmitter.h; path = rnBaseApp/RCTBTEventEmitter.h; sourceTree = "<group>"; };
-		C1C978DF226491F300FABB20 /* RCTBTEventEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RCTBTEventEmitter.m; path = rnBaseApp/RCTBTEventEmitter.m; sourceTree = "<group>"; };
+		C159E85D2265D7700028E9E0 /* BTEventEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BTEventEmitter.h; path = rnBaseApp/BTEventEmitter.h; sourceTree = "<group>"; };
+		C159E85E2265D7700028E9E0 /* BTEventEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BTEventEmitter.m; path = rnBaseApp/BTEventEmitter.m; sourceTree = "<group>"; };
 		CCEE864995684AD998427E0F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		D9CC26F8894E4A0B966E611C /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		E3670CB579604FA793B9AE5D /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
@@ -601,8 +598,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				33964B382264AFDB00F80571 /* BTEventEmitter.h */,
-				33964B392264AFDB00F80571 /* BTEventEmitter.m */,
+				C159E85D2265D7700028E9E0 /* BTEventEmitter.h */,
+				C159E85E2265D7700028E9E0 /* BTEventEmitter.m */,
 			);
 			name = rnBaseApp;
 			sourceTree = "<group>";
@@ -1391,10 +1388,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1C978E0226491F300FABB20 /* RCTBTEventEmitter.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				33964B3A2264AFDB00F80571 /* BTEventEmitter.m in Sources */,
+				C159E85F2265D7700028E9E0 /* BTEventEmitter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

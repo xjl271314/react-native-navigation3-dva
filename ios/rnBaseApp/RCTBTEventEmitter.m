@@ -8,6 +8,6 @@
 
 #import "RCTBTEventEmitter.h"
 
-@implementation RCTBTEventEmitter
+@implementation BTEventEmitter
 
 @end

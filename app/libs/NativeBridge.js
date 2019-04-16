@@ -1,4 +1,7 @@
-import { NativeModules, NativeEventEmitter } from 'react-native'
+import {
+    NativeModules,
+    NativeEventEmitter
+} from 'react-native'
 
 const BTEventEmitter = NativeModules.BTEventEmitter
 
@@ -8,11 +11,12 @@ const BTEventEmitter = NativeModules.BTEventEmitter
  * @export
  * @param
  * {
- *   str:要输出的字符串
+ *   text:要输出的字符串
+ *   callback:callback
  * } 
  */
-export async function NativePrintStr(str) {
-    return await BTEventEmitter.NativePrintStr(str)
+export async function NativePrintStr(text,cb) {
+    return await BTEventEmitter.NativePrintStr(text,cb)
 }
 
 /**
@@ -22,5 +26,5 @@ export async function NativePrintStr(str) {
  * @param
  * {
  *   text:要提示的文案
- * } 
+ * }
  */

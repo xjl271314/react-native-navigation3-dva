@@ -15,7 +15,11 @@ export default class Tab3Screen extends React.Component {
     this._navListener.remove();
   }
   async test(){
-    NativePrintStr('哈哈哈')
+    await NativePrintStr('哈哈哈',(err,res)=>{
+      if(err) console.error(err) 
+      console.log('received from ios',res)
+    })
+    
   }
     render() {
       return (
