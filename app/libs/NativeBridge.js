@@ -28,3 +28,13 @@ export async function NativePrintStr(text,cb) {
  *   text:要提示的文案
  * }
  */
+
+
+/**
+ * 获取用户的手机通讯录
+ *
+ */
+
+ export async function nativeGetContact(){
+    return await BTEventEmitter.nativeGetContact()
+ }

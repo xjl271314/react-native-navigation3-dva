@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View,StatusBar } from 'react-native';
 import { px2dp, isIphone } from '../../libs/commont'
+import { nativeGetContact } from '../../libs/NativeBridge'
 
 export default class Tab2Screen extends React.Component {
   componentDidMount() {
@@ -13,12 +14,16 @@ export default class Tab2Screen extends React.Component {
   componentWillUnmount() {
     this._navListener.remove();
   }
+  getContact= async ()=>{
+ let result = await nativeGetContact()
+ console.log('result',result)
+  }
     render() {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor:'orange' }}>
                       <Text
-              onPress={_=>this.props.navigation.push('Home')}
-            >前往Home</Text>
+              onPress={this.getContact}
+            >点我获取用户手机通讯录</Text>
         </View>
       );
     }
