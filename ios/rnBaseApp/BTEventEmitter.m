@@ -21,6 +21,7 @@ RCT_EXPORT_METHOD(NativePrintStr:(NSString *)text callback:(RCTResponseSenderBlo
   callback(@[[NSNull null],callbackData]);
 }
 
+
 #pragma mark -展示系统通讯录页面
 RCT_REMAP_METHOD(showContacts,
                  showContactsResolveBlock:(RCTPromiseResolveBlock)resolveBlock
