@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View,StatusBar } from 'react-native';
 import { px2dp, isIphone } from '../../libs/commont'
-import { nativeGetContact } from '../../libs/NativeBridge'
+import { showContacts } from '../../libs/NativeBridge'
 
 export default class Tab2Screen extends React.Component {
   componentDidMount() {
@@ -15,7 +15,7 @@ export default class Tab2Screen extends React.Component {
     this._navListener.remove();
   }
   getContact= async ()=>{
- let result = await nativeGetContact()
+ let result = await showContacts()
  console.log('result',result)
   }
     render() {

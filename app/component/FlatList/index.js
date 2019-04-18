@@ -65,7 +65,8 @@ export default class FlatList extends Component {
         const {
             refreshing,
             onEndReachedThreshold,
-            onRefresh
+            onRefresh,
+            initialNumToRender
         } = this.props
         return (
             <RNFlatList
@@ -104,6 +105,7 @@ export default class FlatList extends Component {
                         loadEnd={this.props.loadEnd}
                     />
                 }
+                initialNumToRender={initialNumToRender || 10}
                 windowSize={300}
             />
         )

@@ -35,6 +35,6 @@ export async function NativePrintStr(text,cb) {
  *
  */
 
- export async function nativeGetContact(){
-    return await BTEventEmitter.nativeGetContact()
+ export async function showContacts(){
+    return await BTEventEmitter.showContacts()
  }
