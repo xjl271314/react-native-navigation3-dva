@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <React/RCTBridgeModule.h>
+#import <React/RCTBridgeModule.h>//bridge基础库
+#import <React/RCTConvert.h> //类型转换库
 
 @interface BTEventEmitter : NSObject<RCTBridgeModule>
 

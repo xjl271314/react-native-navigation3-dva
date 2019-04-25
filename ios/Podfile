@@ -7,7 +7,7 @@ target 'rnBaseApp' do
 
   # Pods for rnBaseApp
   def main_pod
-      pod 'JSONModel'
+      pod "JSONModel"
 
       end  
           main_pod

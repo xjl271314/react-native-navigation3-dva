@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <JSONModel/JSONModel.h>
-
+#import <ContactsUI/ContactsUI.h> //获取通讯录
 
 @interface ShowContactsResultModel : JSONModel
 @property (nonatomic, strong) NSString *name;
