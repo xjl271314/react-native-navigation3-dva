@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View,StatusBar } from 'react-native';
 import { px2dp, isIphone } from '../../libs/commont'
 import { showContacts } from '../../libs/NativeBridge'
+import Contacts from 'react-native-contacts';
 
 export default class Tab2Screen extends React.Component {
   componentDidMount() {
@@ -15,8 +16,15 @@ export default class Tab2Screen extends React.Component {
     this._navListener.remove();
   }
   getContact= async ()=>{
-    let result = await showContacts()
-    console.log('result',result)
+    // let result = await showContacts()
+    console.log('result',Contacts)
+    // await Contacts.getAll((err, contacts) => {
+    //   if (err) {
+    //     throw err;
+    //   }
+    //   // contacts returned
+    //   console.log(contacts)
+    // })
   }
 
   getContactNum = async () => {

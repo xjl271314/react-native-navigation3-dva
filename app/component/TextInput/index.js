@@ -14,6 +14,8 @@ const TextInput = (props) =>{
     return(
         <RNTextInput
             {...props}
+            password={true}
+            allowFontScaling={false}
             style={[styles.TextInput,props.style]}
             
         />

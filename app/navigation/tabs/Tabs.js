@@ -25,6 +25,7 @@ import MyDrawTable from '../DrawTable'
 import Tab1Screen from './Tab1'
 import Tab2Screen from './Tab2'
 import Tab3Screen from './Tab3'
+import MyScreen from '../../views/My'
 
 export default Tabs = createBottomTabNavigator({
     Home: {
@@ -67,7 +68,7 @@ export default Tabs = createBottomTabNavigator({
         },
     },
     tab3: {
-        screen: Tab3Screen,
+        screen: MyScreen,
         navigationOptions: {
             tabBarLabel: '我的',
             tabBarIcon: ({ tintColor }) => (

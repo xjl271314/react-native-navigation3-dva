@@ -4,14 +4,16 @@ import {
     Text,
     View,
     Image,
-    SafeAreaView
+    SafeAreaView,
+    StatusBar
 } from 'react-native';
-import { px2dp, ifIphoneX, deviceH } from '../libs/commont'
+import { px2dp, ifIphoneX,isIphone, deviceH } from '../libs/commont'
 import AsyncStorage from '@react-native-community/async-storage'
 import commonStyle from '../libs/commonStyle'
 import BaseInput from '../component/BaseInput'
-import { TouchableOpacity } from '../component/MyTouchable'
+import { TouchableOpacity,TouchableWithoutFeedback } from '../component/MyTouchable'
 import Button from '../component/Button'
+const dismissKeyboard = require('dismissKeyboard');
 
 const Logos = () => (
     <View style={{
@@ -56,7 +58,16 @@ export default class Login extends Component {
     static navigationOptions = {
         header:null
     }
-
+    componentDidMount() {
+        this._navListener = this.props.navigation.addListener('didFocus', () => {
+          StatusBar.setBarStyle('dark-content');
+          !isIphone && StatusBar.setBackgroundColor('#6a51ae');
+        });
+      }
+    
+    componentWillUnmount() {
+        this._navListener.remove();
+    }
     state = {
         account: '',
         password: ''
@@ -64,53 +75,59 @@ export default class Login extends Component {
     
     async judgeLogin(){
         let isLogin = await AsyncStorage.getItem('login')
-        if(isLogin){
-            this.props.navigation.navigate('Home')
-        }
+        // if(isLogin){
+        //     this.props.navigation.navigate('Home')
+        // }
     }
     login=()=>{
-        AsyncStorage.setItem('login','111')
+        AsyncStorage.setItem('login','111').then(()=>{
+            this.props.navigation.navigate({
+                routeName:"Home"
+            })
+        })
     }
     render() {
         const { account, password } = this.state
         const { state } = this.props.navigation
         return (
             <SafeAreaView style={styles.container}>
-                <View style={styles.viewContainer}>
-                    <Logos />
-                    <View style={styles.formContainer}>
-                        <BaseInput
-                            label="用户名"
-                            animated
-                            placeholder="请填写邮箱/手机号/微信号"
-                            value={account}
-                            onChangeText={e => this.setState({ account: e })}
-                        />
+                <TouchableWithoutFeedback onPress={()=>dismissKeyboard()}>
+                    <View style={styles.viewContainer}>
+                        <Logos />
+                        <View style={styles.formContainer}>
+                            <BaseInput
+                                label="用户名"
+                                animated
+                                placeholder="请填写邮箱/手机号/微信号"
+                                value={account}
+                                onChangeText={e => this.setState({ account: e })}
+                            />
 
-                        <BaseInput
-                            label="密码"
-                            animated
-                            placeholder="请填写微信密码"
-                            value={password}
-                            onChangeText={e => this.setState({ password: e })}
-                        />
+                            <BaseInput
+                                label="密码"
+                                animated
+                                placeholder="请填写微信密码"
+                                value={password}
+                                onChangeText={e => this.setState({ password: e })}
+                            />
 
-                        <TouchableOpacity style={styles.messageButton}>
-                            <Text style={styles.messageButtonText}>用短信验证码登录</Text>
-                        </TouchableOpacity>
+                            <TouchableOpacity style={styles.messageButton}>
+                                <Text style={styles.messageButtonText}>用短信验证码登录</Text>
+                            </TouchableOpacity>
 
 
-                        <Button
-                            style={styles.loginButton}
-                            underlayColor="#52c41a"
-                            onPress={this.login}
-                        >
-                            <Text style={styles.loginButtontext}>登录</Text>
-                        </Button>
+                            <Button
+                                style={styles.loginButton}
+                                underlayColor="#52c41a"
+                                onPress={this.login}
+                            >
+                                <Text style={styles.loginButtontext}>登录</Text>
+                            </Button>
 
-                        <Footer />
+                            <Footer />
+                        </View>
                     </View>
-                </View>
+                </TouchableWithoutFeedback>
             </SafeAreaView>
         )
     }

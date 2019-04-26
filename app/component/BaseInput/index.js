@@ -35,7 +35,6 @@ const BaseInput = (props) => {
     }
 
     onBlur = () => {
-        dismissKeyboard()
         Animated.timing(show, {
             duration: 450,
             toValue: 0,
@@ -43,16 +42,13 @@ const BaseInput = (props) => {
         }).start();
     }
     return (
-
         <View
             style={[styles.InputContainer]}
         >
-            <TouchableWithoutFeedback onPress={onBlur}>
-                <View style={[styles.labelBox, { ...props.labelStyle }]}>
-                    <Text style={styles.label}>{label}</Text>
-                </View>
-            </TouchableWithoutFeedback>
-            
+            <View style={[styles.labelBox, { ...props.labelStyle }]}>
+                <Text style={styles.label}>{label}</Text>
+            </View>
+
             <TextInput
                 {...props}
                 style={[styles.TextInput]}
