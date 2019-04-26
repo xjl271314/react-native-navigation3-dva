@@ -29,9 +29,38 @@ RCT_REMAP_METHOD(showContacts,
                  showContactsResolveBlock:(RCTPromiseResolveBlock)resolveBlock
                  showContactsRejectBlock:(RCTPromiseRejectBlock)rejectBlock){
  NSLog(@"准备调用系统通讯录方法@");
-  
-
+  dispatch_sync(dispatch_get_main_queue(),^{
+    //查询通讯录中的所有人
+    resolveBlock([self findAllContacts]);
+  });
 }
 
+#pragma mark -获取本地通讯录条数
+RCT_REMAP_METHOD(showContactsNum,
+                 showContactsNumResolveBlock:(RCTPromiseResolveBlock)resolveBlock
+                 showContactsNumRejectBlock:(RCTPromiseRejectBlock)rejectBlock){
+  
+}
 
+#pragma mark --查询通信录中所有联系人
+
+- (NSArray*)findAllContacts {
+  
+  //返回的联系人集合
+  id contacts = [[NSMutableArray alloc] init];
+  
+  NSArray *keysToFetch = @[CNContactFamilyNameKey, CNContactGivenNameKey];
+  CNContactFetchRequest *fetchRequest = [[CNContactFetchRequest alloc] initWithKeysToFetch:keysToFetch];
+
+  CNContactStore *contactStore = [[CNContactStore alloc] init];
+  NSError *error = nil;
+  [contactStore enumerateContactsWithFetchRequest:fetchRequest error:&error usingBlock:^(CNContact *_Nonnull contact, BOOL *_Nonnull stop) {
+    if (!error) {
+      [contacts addObject:contact];
+    } else {
+      NSLog(@"error : %@", error.localizedDescription);
+    }
+  }];
+  return contacts;
+}
 @end
