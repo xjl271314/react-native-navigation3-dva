@@ -11,30 +11,18 @@ import LoginPage from '../views/Login'
 
 const AppStack = createStackNavigator({
     Home: {
-        screen: Tabs,
-        navigationOptions: ({
-            navigation
-        }) => ({
-            header: null
-        })
+        screen: Tabs
     },
     Discovery: {
         screen: DiscoveryPage
     }
-
 }, {
         initialRouteName: 'Home',
         initialRouteParams: {}, //初始化参数
-        navigationOptions: ({
+        defaultNavigationOptions: ({ 
             navigation
         }) => ({
-            headerStyle: {
-                backgroundColor: '#f4511e',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                fontWeight: 'bold',
-            },
+            header:null,
             gesturesEnabled: true
         })
     });
@@ -51,7 +39,7 @@ const RootStack = createSwitchNavigator({
     Auth: AuthStack,
     App: AppStack,
 }, {
-        initialRouteName: 'Auth'
+        initialRouteName: 'App'
     });
 
 export default createAppContainer(RootStack);

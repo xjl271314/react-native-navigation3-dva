@@ -26,7 +26,7 @@ const MyAvatar = props =>(
     </TouchableHighlight>  
 )
 
-@connect(({ user }) => ({
+@connect(( user ) => ({
     userInfo:user.userInfo
 }))
 export default class My extends Component {

@@ -2,8 +2,6 @@ import React from 'react'
 import { create } from 'dva-core'
 import { Provider, connect } from 'react-redux'
 
-// export { connect }
-
 export default function(options) {
   const app = create(options)
   // HMR workaround

@@ -25,6 +25,11 @@ react-native link @react-native-community/async-storage
 Async Storage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'
 
 
+## 相关插件说明
+
+#### react-native-root-siblings
+用于在rn界面上创建一个根视图app的兄弟节点 用来创建modal等操作
+
 ## 注意
 
 图片命名的时候不要重名,不然iOS打包的时候会报错
@@ -32,3 +37,6 @@ Async Storage has been extracted from react-native core and will be removed in a
 ios开发真机调试的话 如遇无法连接chrome debug问题
 
 请修改Libraries——>RCTWebScoket.xcodeproj文件下的RCTWebScoketExecutor以及RCTBundleURLProvider.m文件  修改localhost为本机ip 192.168.x.x
+
+处理react-native-gesture-handler
+react-navigation3.x中createStackNavigator把navigationOptions 改为了 defaultNavigationOptions

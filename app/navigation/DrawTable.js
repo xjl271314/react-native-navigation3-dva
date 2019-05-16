@@ -11,55 +11,11 @@ import {
   ScrollView
 } from 'react-native';
 
-import { createDrawerNavigator, DrawerItems, createAppContainer } from 'react-navigation';
+import { createDrawerNavigator, DrawerItems, createAppContainer } from 'react-navigation'
 import HomeScreen from '../views/Home'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
-// class MyNotificationsScreen extends Component {
-//   static navigationOptions = {
-//     drawerWidth:  300, // 展示的宽度
-//     drawerPosition: 'left', // 抽屉在左边还是右边
-//     drawerLabel: 'Notifications',
-//     drawerIcon: ({ tintColor }) => (
-//       <Image
-//         source={require('../assets/refresh_nav.png')}
-//         style={[styles.icon, { tintColor: tintColor }]}
-//       />
-//     ),
-//   };
-
-//   render() {
-//     return (
-//       <SafeAreaView style={{ flex: 1 }}>
-//         <Button
-//           onPress={() => this.props.navigation.goBack()}
-//           title="Go back home"
-//         />
-//       </SafeAreaView>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   icon: {
-//     width: 24,
-//     height: 24,
-//   },
-// });
-
-
-// export default MyDrawTable = createDrawerNavigator({
-//   Home: {
-//     screen: HomeScreen,
-//   },
-//   Notifications: {
-//     screen: MyNotificationsScreen,
-//   },
-// },
-//   {
-//     initialRouteName: 'Home'
-//   }
-// );
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import SwiperFlatListScreen from '../views/SwiperFlatList'
+import SectionListScreen from '../views/SectionList'
 
 export default MyDrawTable = createDrawerNavigator({
   Home: {
@@ -72,18 +28,44 @@ export default MyDrawTable = createDrawerNavigator({
     }
   },
   Discovery: {
-      screen: HomeScreen,
-      navigationOptions: {
-          drawerLabel: 'Page5',
-          drawerIcon: ({tintColor}) => (
-              <MaterialIcons
-                  name="move-to-inbox"
-                  size={24}
-                  style={{color: tintColor}}
-              />
-          ),
-      }
+    screen: HomeScreen,
+    navigationOptions: {
+      drawerLabel: 'Page5',
+      drawerIcon: ({ tintColor }) => (
+        <MaterialIcons
+          name="move-to-inbox"
+          size={24}
+          style={{ color: tintColor }}
+        />
+      ),
+    }
   },
+  SwiperFlatList: {
+    screen: SwiperFlatListScreen,
+    navigationOptions: {
+      drawerLabel: 'SwiperFlatList',
+      drawerIcon: ({ tintColor }) => (
+        <MaterialIcons
+          name="move-to-inbox"
+          size={24}
+          style={{ color: tintColor }}
+        />
+      ),
+    }
+  },
+  SectionList:{
+    screen: SectionListScreen,
+    navigationOptions: {
+      drawerLabel: 'SectionList',
+      drawerIcon: ({ tintColor }) => (
+        <MaterialIcons
+          name="move-to-inbox"
+          size={24}
+          style={{ color: tintColor }}
+        />
+      ),
+    }
+  }
 },
   {
     initialRouteName: 'Home',
@@ -94,8 +76,8 @@ export default MyDrawTable = createDrawerNavigator({
       <ScrollView style={{ backgroundColor: '#FFF', flex: 1 }}>
         <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
           <View style={{
-            height:100,
-            backgroundColor:'#179B16'
+            height: 100,
+            backgroundColor: '#179B16'
           }}>
             <Text>我是其他位置区域</Text>
           </View>

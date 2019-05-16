@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ Component } from 'react'
 import { AppRegistry } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import dva from './utils/dva'
@@ -14,6 +14,7 @@ import './mock'
 
 // 加载所有models
 import appModel from './models/app'
+import userModel from './models/user'
 import homeModel from './models/home'
 
 //配置persit
@@ -27,7 +28,8 @@ const app = dva({
   initialState: {},
   models: [
     appModel,
-    homeModel
+    homeModel,
+    userModel
   ],
   extraReducers: { router: routerReducer },
   onAction: [routerMiddleware],

@@ -23,7 +23,7 @@ const ListFooterComponent = (props) => {
             ]}
         >
             <Text style={styles.text}>{
-                props.loadEnd?'我是有底线的':'正在玩命加载中...'
+                props.hiddenFooter ? '':props.loadEnd?'我是有底线的':'正在玩命加载中...'
             }</Text>
         </View>
     )
