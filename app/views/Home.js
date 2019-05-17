@@ -20,6 +20,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import commonStyle from '../libs/commonStyle'
 import Badge from '../component/Badge'
 import FindRecommendBlock from '../component/FindRecommendBlock'
+// import Tabs from '../navigation/tabs/TabConfig'
 
 @connect(({ app, home }) => ({
   login: app.login,

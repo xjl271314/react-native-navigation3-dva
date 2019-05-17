@@ -18,3 +18,18 @@ Mock.mock(FetchUrl+'index/chatList',{
         'news':Random.natural(0,99)
     }]
 })
+
+// 模拟app获取tabs
+Mock.mock(FetchUrl+'app/appTabs',{
+    'code':1,
+    'data':[{
+        'key':String(Random.natural()),
+        'id':1
+    },{
+        'key':String(Random.natural()),
+        'id':2
+    },{
+        'key':String(Random.natural()),
+        'id':3
+    }]
+})

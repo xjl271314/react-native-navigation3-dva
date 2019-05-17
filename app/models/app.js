@@ -1,12 +1,15 @@
 import { createAction, NavigationActions, Storage } from '../utils'
 import * as authService from '../services/auth'
-
+import {
+  getAppTabs
+} from '../services/app'
 export default {
   namespace: 'app',
   state: {
     login: false,
     loading: true,
     fetching: false,
+    tabs: []
   },
   reducers: {
     updateState(state, { payload }) {
@@ -31,8 +34,16 @@ export default {
       yield call(Storage.set, 'login', false)
       yield put(createAction('updateState')({ login: false }))
     },
-    *test(action,{call,put}){
+    *test(action, { call, put }) {
       console.log(action)
+    },
+    *getTabs(action, { call, put }) {
+      const result = yield call(getAppTabs)
+      if (result.code == 1) {
+        yield put(createAction('updateState')({
+          tabs: result.data
+        }))
+      }
     }
   },
   subscriptions: {

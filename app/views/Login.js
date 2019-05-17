@@ -54,12 +54,14 @@ export default class Login extends Component {
     constructor(props){
         super(props)
         this.judgeLogin()
+
     }
     componentDidMount() {
         this._navListener = this.props.navigation.addListener('didFocus', () => {
           StatusBar.setBarStyle('dark-content');
           !isIphone && StatusBar.setBackgroundColor('#6a51ae');
         });
+        console.log('login')
       }
     
     componentWillUnmount() {

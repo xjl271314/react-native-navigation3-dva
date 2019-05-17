@@ -68,7 +68,6 @@ export default MyDrawTable = createDrawerNavigator({
   }
 },
   {
-    initialRouteName: 'Home',
     contentOptions: {
       activeTintColor: '#179B16',
     },
