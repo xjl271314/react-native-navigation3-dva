@@ -55,9 +55,6 @@ export default class Login extends Component {
         super(props)
         this.judgeLogin()
     }
-    static navigationOptions = {
-        header:null
-    }
     componentDidMount() {
         this._navListener = this.props.navigation.addListener('didFocus', () => {
           StatusBar.setBarStyle('dark-content');

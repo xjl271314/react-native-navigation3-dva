@@ -33,9 +33,6 @@ export default class My extends Component {
     constructor(props){
         super(props)
     }
-    static navigationOptions = {
-        header:null
-    }
     componentDidMount() {
         this._navListener = this.props.navigation.addListener('didFocus', () => {
           StatusBar.setBarStyle('dark-content');
@@ -46,7 +43,7 @@ export default class My extends Component {
     
     initData(){
         const { dispatch } = this.props
-        dispatch(createAction('user/loadMyPageInfo'))
+        dispatch(createAction('user/loadMyPageInfo')())
     }
 
     componentWillUnmount() {
@@ -56,9 +53,9 @@ export default class My extends Component {
         const { state } = this.props.navigation
         return (
             <SafeAreaView style={styles.container}>
-                <MyAvatar 
+                {/* <MyAvatar 
 
-                />
+                /> */}
             </SafeAreaView>
         )
     }

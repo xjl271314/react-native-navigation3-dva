@@ -9,6 +9,7 @@ import HomePage from '../views/Home';
 import DiscoveryPage from '../views/Discovery'
 import LoginPage from '../views/Login'
 
+//App主页面
 const AppStack = createStackNavigator({
     Home: {
         screen: Tabs
@@ -19,18 +20,21 @@ const AppStack = createStackNavigator({
 }, {
         initialRouteName: 'Home',
         initialRouteParams: {}, //初始化参数
-        defaultNavigationOptions: ({ 
+        defaultNavigationOptions: ({
             navigation
         }) => ({
-            header:null,
+            header: null,
             gesturesEnabled: true
         })
     });
 
-// 认证页面
+// 登录页面
 const AuthStack = createStackNavigator({
     Login: {
-        screen: LoginPage
+        screen: LoginPage,
+        navigationOptions: ({
+            header: null
+        })
     },
 });
 
@@ -38,8 +42,6 @@ const AuthStack = createStackNavigator({
 const RootStack = createSwitchNavigator({
     Auth: AuthStack,
     App: AppStack,
-}, {
-        initialRouteName: 'App'
-    });
+});
 
 export default createAppContainer(RootStack);
