@@ -21,9 +21,9 @@ import commonStyle from '../libs/commonStyle'
 import Badge from '../component/Badge'
 import FindRecommendBlock from '../component/FindRecommendBlock'
 import { StatusBarHoc } from '../libs/statusBar'
+import { NavigationActions } from '../utils'
 
 @connect(({ app, home }) => ({
-  login: app.login,
   chatList: home.chatList,
   currentPage: home.chatPage,
   pageSize: home.chatPageSize,
@@ -62,7 +62,12 @@ export default class Home extends Component {
   }
 
   itemPress = (e) => {
-    console.log(e)
+    this.props.dispatch(
+      NavigationActions.navigate({ 
+        routeName: 'Detail',
+        params:e 
+      })
+    )
   }
 
   render() {
@@ -130,33 +135,6 @@ export default class Home extends Component {
             navigation={this.props.navigation}
             onPress={(e) => { console.log(e) }}
           />
-          <TouchableWithoutFeedback
-            onPress={() => {
-              this.props.navigation.navigate('Discovery', {
-                id: 1111,
-                name: '哈哈哈'
-              })
-            }}
-          >
-            <View style={styles.button}>
-              <Text style={styles.text}>点击前往发现页</Text>
-            </View>
-          </TouchableWithoutFeedback>
-
-          <TouchableWithoutFeedback
-            onPress={() => {
-              this.props.navigation.navigate('Login', {
-                account: 'a123456',
-                password: '222333'
-              })
-            }}
-          >
-            <View style={styles.button}>
-              <Text style={styles.text}>点击显示登录页</Text>
-            </View>
-          </TouchableWithoutFeedback> */}
-
-
 
         {/* <FindRecommendList
             title="在E3《赛博朋克2077》闭门演示之后与CDPR的一次简短访谈"

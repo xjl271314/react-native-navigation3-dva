@@ -8,6 +8,7 @@ import Tabs from './tabs/Tabs'
 import HomePage from '../views/Home';
 import DiscoveryPage from '../views/Discovery'
 import LoginPage from '../views/Login'
+import DetailPage from '../views/Detail'
 
 //App主页面
 const AppStack = createStackNavigator({
@@ -16,6 +17,9 @@ const AppStack = createStackNavigator({
     },
     Discovery: {
         screen: DiscoveryPage
+    },
+    Detail:{
+        screen:DetailPage
     }
 }, {
         initialRouteName: 'Home',

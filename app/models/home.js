@@ -12,7 +12,7 @@ export default {
     chatPageSize: 10,
     chatLoadEnd: false,
     isLoading: false,
-    isRefresh:false
+    isRefresh:true
   },
   reducers: {
     updateState(state, { payload }) {

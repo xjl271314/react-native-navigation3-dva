@@ -3,9 +3,9 @@ import {
     Dimensions,
     Platform,
     findNodeHandle,
-    UIManager
+    UIManager,
+    DeviceInfo
 } from 'react-native';
-
 
 /**
  * 日期格式化函数
@@ -59,7 +59,7 @@ const X_HEIGHT = 812;
  */
 export function isIphoneX() {
     return (
-        Platform.OS === 'ios' &&
+        DeviceInfo.isIPhoneX_deprecated || Platform.OS === 'ios' &&
         ((deviceH >= X_HEIGHT && deviceW >= X_WIDTH) ||
             (deviceH >= X_WIDTH && deviceW >= X_HEIGHT))
     )

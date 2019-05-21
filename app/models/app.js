@@ -18,12 +18,14 @@ export default {
   },
   effects: {
     *loadStorage(action, { call, put }) {
+      console.log('检查是否登录....')
       const login = yield call(Storage.get, 'login', false)
       yield put(createAction('updateState')({ appLogin: login, loading: false }))
+      console.log('当前登录状态',Boolean(login))
       if (!login) {
-        // yield put(NavigationActions.navigate({
-        //   routeName: 'Login'
-        // }))
+        yield put(NavigationActions.navigate({
+          routeName: 'Login'
+        }))
       }
     },
     *login({ payload }, { call, put }) {

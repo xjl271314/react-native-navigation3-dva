@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { BackHandler, Animated, Easing } from 'react-native'
+import { BackHandler, View, ActivityIndicator } from 'react-native'
 import {
   createReactNavigationReduxMiddleware,
   createNavigationReducer,
@@ -16,15 +16,15 @@ export const routerMiddleware = createReactNavigationReduxMiddleware(
 )
 
 export const logger = store => next => action => {
-  console.log('before',store.getState())
-  if( typeof action === 'function'){
+  console.log('before', store.getState())
+  if (typeof action === 'function') {
     console.log('dispatch a function')
   }
   else {
-    console.log('dispatching',action)
+    console.log('dispatching', action)
   }
   const result = next(action)
-  console.log('nextState',store.getState())
+  console.log('nextState', store.getState())
 }
 
 const App = createReduxContainer(AppNavigator, 'root')
@@ -40,15 +40,20 @@ function getActiveRouteName(navigationState) {
   return route.routeName
 }
 
+const Loading = () => (
+  <View style={{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}>
+    <ActivityIndicator />
+  </View>
+)
+
 @connect(({ app, router }) => ({ app, router }))
 export default class Router extends PureComponent {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.backHandle)
-    // 判断是否登录
-
-    this.props.dispatch({
-      type:"app/loadStorage"
-    })
   }
 
   componentWillUnmount() {
@@ -69,7 +74,8 @@ export default class Router extends PureComponent {
 
   render() {
     const { app, dispatch, router } = this.props
-    
+    if (app.loading) return <Loading />
+
     return <App dispatch={dispatch} state={router} />
   }
 }

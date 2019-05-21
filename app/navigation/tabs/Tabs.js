@@ -67,7 +67,7 @@ export default class Tabs extends Component {
         super(props)
         this.tabs = {
             1: {
-                screen: MyDrawTable,
+                screen: HomeScreen,
                 navigationOptions: ({ navigation, screenProps }) => ({
                     tabBarLabel: '微信',
                     tabBarIcon: ({ tintColor }) => (

@@ -16,7 +16,9 @@ import {
 } from 'react-native';
 import {
     px2dp,
-    ifIphoneX
+    ifIphoneX,
+    deviceW,
+    isIphone
 } from '../libs/commont';
 import Icon from 'react-native-vector-icons/Entypo'
 import {
@@ -24,6 +26,7 @@ import {
 } from './MyTouchable'
 import commonStyle from '../libs/commonStyle'
 
+const HeaderHeight = isIphone ? 44 :50
 export default class Header extends PureComponent {
     render() {
         const {
@@ -54,7 +57,11 @@ export default class Header extends PureComponent {
                     </TouchableWithoutFeedback>}
                 <View style={styles.titleBox}>
                     {
-                        typeof title === "object" ? title : <Text style={[styles.navtext]}>{title}</Text>
+                        typeof title === "object" ?title : 
+                        <Text 
+                            style={[styles.navtext]}
+                            numberOfLines={1}
+                        >{title}</Text>
                     }
                 </View>
                 <View style={styles.rightbtn}>
@@ -74,7 +81,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderBottomColor: commonStyle.normalBorderColor,
         height: 44,
-        zIndex: 100
+        zIndex: 100,
+        paddingHorizontal: px2dp(15),
     },
     defaultIcon: {
         position: 'absolute',
@@ -85,10 +93,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        maxWidth: 0.8*deviceW,
     },
     navtext: {
         fontSize: px2dp(20),
-        color: '#333'
+        color: '#333',
     },
     rightbtn:{
         position: 'absolute',
