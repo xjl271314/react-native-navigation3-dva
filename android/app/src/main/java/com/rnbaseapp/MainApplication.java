@@ -3,6 +3,7 @@ package com.rnbaseapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -26,14 +27,9 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new ReactNativeContacts(),
-            new AsyncStoragePackage(),
-            new RNGestureHandlerPackage(),
-            new VectorIconsPackage(),
-            new LinearGradientPackage()
-      );
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNCWebViewPackage(), new ReactNativeContacts(),
+          new AsyncStoragePackage(), new RNGestureHandlerPackage(), new VectorIconsPackage(),
+          new LinearGradientPackage());
     }
 
     @Override

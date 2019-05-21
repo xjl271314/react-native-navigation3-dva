@@ -27,6 +27,8 @@ import Tab4Icon from 'react-native-vector-icons/AntDesign'
 // 页面
 import HomeScreen from '../../views/Home';
 import MyDrawTable from '../DrawTable'
+import WebViewScreen from '../../views/WebView'
+
 //tab
 import Tab1Screen from './Tab1'
 import Tab2Screen from './Tab2'
@@ -93,7 +95,7 @@ export default class Tabs extends Component {
                 },
             },
             3: {
-                screen: Tab2Screen,
+                screen: WebViewScreen,
                 navigationOptions: {
                     tabBarLabel: '发现',
                     tabBarIcon: ({ tintColor }) => (

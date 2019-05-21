@@ -11,6 +11,8 @@ target 'rnBaseApp' do
 
         pod 'react-native-contacts', :path => '../node_modules/react-native-contacts'
 
+        pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
       end  
           main_pod
   end

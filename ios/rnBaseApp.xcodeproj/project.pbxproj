@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		15C7CCBD225B4DF6AB65F1B4 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9CC26F8894E4A0B966E611C /* SimpleLineIcons.ttf */; };
 		291DC965BDA54FF9A57EDA63 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B529CC2147C648129483BFD0 /* Ionicons.ttf */; };
+		336B928E22940DA300255080 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 336B928922940D5100255080 /* libRNCWebView.a */; };
 		339640AB2272ABE600875422 /* RNShowContactsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 339640AA2272ABE600875422 /* RNShowContactsModel.m */; };
 		4A5DB088376F41CBBA4DE745 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B17C755A107849229D353BAA /* FontAwesome5_Solid.ttf */; };
 		4F38DABE638E4079A23B4B74 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE8F41AF75EA4159A12D600A /* Octicons.ttf */; };
@@ -167,6 +168,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
 			remoteInfo = "double-conversion-tvOS";
+		};
+		336B928822940D5100255080 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 336B925B22940D5100255080 /* RNCWebView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCWebView;
 		};
 		337A73F92251E2D8008D253B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -390,6 +398,7 @@
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3015FB478E284643B450BF50 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		333C3434E0ED78B46851A331 /* Pods-rnBaseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rnBaseApp.debug.xcconfig"; path = "Target Support Files/Pods-rnBaseApp/Pods-rnBaseApp.debug.xcconfig"; sourceTree = "<group>"; };
+		336B925B22940D5100255080 /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		339640AA2272ABE600875422 /* RNShowContactsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNShowContactsModel.m; sourceTree = "<group>"; };
 		339640E82272D45800875422 /* RCTContacts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTContacts.xcodeproj; path = "../node_modules/react-native-contacts/ios/RCTContacts.xcodeproj"; sourceTree = "<group>"; };
 		3399EE66226755C50023BF11 /* RNShowContactsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNShowContactsModel.h; sourceTree = "<group>"; };
@@ -435,6 +444,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				336B928E22940DA300255080 /* libRNCWebView.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
@@ -590,6 +600,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		336B925C22940D5100255080 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				336B928922940D5100255080 /* libRNCWebView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		337A73F62251E2D8008D253B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +716,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				336B925B22940D5100255080 /* RNCWebView.xcodeproj */,
 				339640E82272D45800875422 /* RCTContacts.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -883,6 +902,10 @@
 					ProjectRef = 082E1439EB75475C8433DF74 /* RNCAsyncStorage.xcodeproj */;
 				},
 				{
+					ProductGroup = 336B925C22940D5100255080 /* Products */;
+					ProjectRef = 336B925B22940D5100255080 /* RNCWebView.xcodeproj */;
+				},
+				{
 					ProductGroup = 338ADF4B224DD9A100AB9E55 /* Products */;
 					ProjectRef = 92BA5E8897CC4CAE883670A7 /* RNGestureHandler.xcodeproj */;
 				},
@@ -1016,6 +1039,13 @@
 			fileType = archive.ar;
 			path = "libdouble-conversion.a";
 			remoteRef = 2DF0FFE82056DD460020B375 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		336B928922940D5100255080 /* libRNCWebView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCWebView.a;
+			remoteRef = 336B928822940D5100255080 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		337A73FA2251E2D8008D253B /* libRNCAsyncStorage.a */ = {
