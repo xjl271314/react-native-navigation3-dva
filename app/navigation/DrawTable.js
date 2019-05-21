@@ -16,6 +16,7 @@ import HomeScreen from '../views/Home'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import SwiperFlatListScreen from '../views/SwiperFlatList'
 import SectionListScreen from '../views/SectionList'
+import DiscoveryScreen from '../views/Discovery'
 
 export default MyDrawTable = createDrawerNavigator({
   Home: {
@@ -28,9 +29,9 @@ export default MyDrawTable = createDrawerNavigator({
     }
   },
   Discovery: {
-    screen: HomeScreen,
+    screen: DiscoveryScreen,
     navigationOptions: {
-      drawerLabel: 'Page5',
+      drawerLabel: 'Discovery',
       drawerIcon: ({ tintColor }) => (
         <MaterialIcons
           name="move-to-inbox"

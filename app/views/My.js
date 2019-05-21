@@ -16,7 +16,7 @@ import {
     TouchableHighlight
 } from '../component/MyTouchable'
 import { createAction } from '../utils'
-
+import { StatusBarHoc } from '../libs/statusBar'
 //Header
 
 const MyAvatar = props =>(
@@ -30,25 +30,18 @@ const MyAvatar = props =>(
 @connect(( user ) => ({
     userInfo:user.userInfo
 }))
+@StatusBarHoc()
 export default class My extends Component {
     constructor(props){
         super(props)
     }
     componentDidMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-          StatusBar.setBarStyle('dark-content');
-          !isIphone && StatusBar.setBackgroundColor('#6a51ae');
-        });
         this.initData()
     }
     
     initData(){
         const { dispatch } = this.props
         dispatch(createAction('user/loadMyPageInfo')())
-    }
-
-    componentWillUnmount() {
-        this._navListener.remove();
     }
     render() {
         const { state } = this.props.navigation

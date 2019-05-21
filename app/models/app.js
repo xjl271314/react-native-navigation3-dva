@@ -21,9 +21,9 @@ export default {
       const login = yield call(Storage.get, 'login', false)
       yield put(createAction('updateState')({ appLogin: login, loading: false }))
       if (!login) {
-        yield put(NavigationActions.navigate({
-          routeName: 'Login'
-        }))
+        // yield put(NavigationActions.navigate({
+        //   routeName: 'Login'
+        // }))
       }
     },
     *login({ payload }, { call, put }) {

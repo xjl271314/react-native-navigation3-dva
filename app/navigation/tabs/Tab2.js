@@ -3,18 +3,10 @@ import { Text, View,StatusBar } from 'react-native';
 import { px2dp, isIphone } from '../../libs/commont'
 import { showContacts } from '../../libs/NativeBridge'
 import Contacts from 'react-native-contacts';
+import { StatusBarHoc } from '../../libs/statusBar'
 
+@StatusBarHoc('light-content')
 export default class Tab2Screen extends React.Component {
-  componentDidMount() {
-    this._navListener = this.props.navigation.addListener('didFocus', () => {
-      StatusBar.setBarStyle('light-content');
-      !isIphone && StatusBar.setBackgroundColor('#6a51ae');
-    });
-  }
-
-  componentWillUnmount() {
-    this._navListener.remove();
-  }
   getContact= async ()=>{
     // let result = await showContacts()
     console.log('result',Contacts)

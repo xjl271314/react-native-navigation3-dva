@@ -2,18 +2,10 @@ import React from 'react';
 import { Text, View,StatusBar,TouchableOpacity } from 'react-native';
 import { px2dp, isIphone } from '../../libs/commont'
 import { NativePrintStr } from '../../libs/NativeBridge'
+import { StatusBarHoc } from '../../libs/statusBar'
 
+@StatusBarHoc('light-content')
 export default class Tab3Screen extends React.Component {
-  componentDidMount() {
-    this._navListener = this.props.navigation.addListener('didFocus', () => {
-      StatusBar.setBarStyle('light-content');
-      !isIphone && StatusBar.setBackgroundColor('#6a51ae');
-    });
-  }
-
-  componentWillUnmount() {
-    this._navListener.remove();
-  }
   async test(){
     await NativePrintStr('哈哈哈',(err,res)=>{
       if(err) console.error(err) 

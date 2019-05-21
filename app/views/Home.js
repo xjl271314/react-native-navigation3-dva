@@ -20,7 +20,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import commonStyle from '../libs/commonStyle'
 import Badge from '../component/Badge'
 import FindRecommendBlock from '../component/FindRecommendBlock'
-import Storage from '../utils/storage'
+import { StatusBarHoc } from '../libs/statusBar'
 
 @connect(({ app, home }) => ({
   login: app.login,
@@ -31,27 +31,11 @@ import Storage from '../utils/storage'
   chatLoadEnd: home.chatLoadEnd,
   isRefresh: home.isRefresh
 }))
+@StatusBarHoc()
 export default class Home extends Component {
-  async componentDidMount() {
-    this._navListener = this.props.navigation.addListener('didFocus', () => {
-      StatusBar.setBarStyle('dark-content');
-      !isIphone && StatusBar.setBackgroundColor('#6a51ae');
-    })
-    let login  = await Storage.get('login')
-    if(!login){
-      this.props.navigation.navigate({
-        routeName:"Auth"
-      })
-      // this.props.dispatch(createAction('navigator/navigate')())
-      return
-    }
+  componentDidMount() {
     this.initData()
   }
-
-  componentWillUnmount() {
-    this._navListener.remove();
-  }
-
   initData() {
     // 获取聊天列表
     this.props.dispatch(createAction('home/loadChatList')(
@@ -161,7 +145,7 @@ export default class Home extends Component {
 
           <TouchableWithoutFeedback
             onPress={() => {
-              this.props.navigation.push('Login', {
+              this.props.navigation.navigate('Login', {
                 account: 'a123456',
                 password: '222333'
               })

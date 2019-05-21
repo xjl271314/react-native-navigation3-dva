@@ -11,8 +11,8 @@ export default {
     chatPage: 0,
     chatPageSize: 10,
     chatLoadEnd: false,
-    isLoading: true,
-    isRefresh:true
+    isLoading: false,
+    isRefresh:false
   },
   reducers: {
     updateState(state, { payload }) {

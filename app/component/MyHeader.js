@@ -1,6 +1,11 @@
 /**
- * 优化后的header组件 2019-3-29
- * 高度采用44
+ * 优化后的header组件 xjl 2019-05-21
+ * 高度采用44 一般在ios平台上都是44的高度  再安卓上一般是50的高度
+ * 
+ * @params 
+ * title string | react-native element
+ * leftComponent react-native element
+ * rightComponent react-native element
  */
 
 import React, { PureComponent } from 'react';
