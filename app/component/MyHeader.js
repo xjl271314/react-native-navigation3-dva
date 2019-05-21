@@ -49,8 +49,7 @@ export default class Header extends PureComponent {
                     </TouchableWithoutFeedback>}
                 <View style={styles.titleBox}>
                     {
-                        typeof (title) == "object" ? title : <Text style={[styles.navtext]}>{title}</Text>
-
+                        typeof title === "object" ? title : <Text style={[styles.navtext]}>{title}</Text>
                     }
                 </View>
                 <View style={styles.rightbtn}>

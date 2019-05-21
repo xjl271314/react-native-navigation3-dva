@@ -11,7 +11,11 @@ function get(key, defaultValue = null) {
 }
 
 function set(key, value) {
-  return AsyncStorage.setItem(key, JSON.stringify(value))
+  return AsyncStorage.setItem(key, JSON.stringify(value)).catch(
+    error=>{
+      error && console.log(error.toString())
+    }
+  )
 }
 
 function remove(key) {

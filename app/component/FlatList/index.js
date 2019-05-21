@@ -41,13 +41,14 @@ export default class FlatList extends Component {
         if (len == 0 || len % pageSize !== 0) {
             return
         }
-
-        if (!this.onEndReachedCalledDuringMomentum) {
-            console.log("FlatList:onEndReached");
-            this.props.onEndReached && this.props.onEndReached()
-            this.onEndReachedCalledDuringMomentum = true;
-        }
-        
+        //确保onEndReached 是在onMomentumScrollBegin之后
+        setTimeout(()=>{
+            if (!this.onEndReachedCalledDuringMomentum) {
+                console.log("FlatList:onEndReached");
+                this.props.onEndReached && this.props.onEndReached()
+                this.onEndReachedCalledDuringMomentum = true;
+            }
+        },100)
     }
     // 底部组件
     renderFooter = () => {
@@ -83,7 +84,10 @@ export default class FlatList extends Component {
                 refreshControl={
                     <RefreshControl
                         refreshing={refreshing}
-                        onRefresh={onRefresh}
+                        onRefresh={()=>{
+                            this.onEndReachedCalledDuringMomentum = true 
+                            onRefresh && onRefresh()
+                        }}
                         colors={['#ff0000', '#00ff00', '#0000ff', '#3ad564']}
                         progressBackgroundColor="#ffffff"
                     />

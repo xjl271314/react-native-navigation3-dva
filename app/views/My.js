@@ -20,10 +20,11 @@ import { createAction } from '../utils'
 //Header
 
 const MyAvatar = props =>(
-    <TouchableHighlight>
-        
+    <TouchableWithoutFeedback>
+        <View>
 
-    </TouchableHighlight>  
+        </View>
+    </TouchableWithoutFeedback>  
 )
 
 @connect(( user ) => ({

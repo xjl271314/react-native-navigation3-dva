@@ -3,13 +3,15 @@ import {
     Image,
     View,
     Text,
-    SafeAreaView
+    SafeAreaView,
+    Platform
 } from 'react-native';
 import {
     StackNavigator,
     createBottomTabNavigator,
     createAppContainer
 } from 'react-navigation';
+import { BottomTabBar } from 'react-navigation-tabs';
 import {
     TouchableOpacity
 } from '../../component/MyTouchable'
@@ -140,16 +142,53 @@ export default class Tabs extends Component {
                 }
             })
         }
-        else{
-           tmps = {...this.tabs}
+        else {
+            tmps = { ...this.tabs }
         }
-        return createAppContainer(createBottomTabNavigator(tmps, staticTabsConfig));
-    }
-    render() {
-        const Tabs = this._getTabs()
-        return (
-            <Tabs />
-        )
-    }
+        return this.newTabs = createAppContainer(
+            createBottomTabNavigator(
+                tmps, {
+                    tabBarComponent: TabBarComponent, 
+                    ...staticTabsConfig
+                }));
+}
+render() {
+    const Tabs = this._getTabs()
+    return (
+        <Tabs />
+    )
+}
 }
 
+
+class TabBarComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.theme = {
+            tintColor: props.activeTintColor,
+            updateTime: new Date().getTime()
+        }
+    }
+
+    render() {
+        const { routes, index } = this.props.navigation.state;
+        if (routes[index].params) {
+            const { theme } = routes[index].params;
+            if (theme && theme.updateTime > this.theme.updateTime) {
+                this.theme = theme;
+            }
+        }
+
+        /**
+         * custom tabBarComponent
+         * https://github.com/react-navigation/react-navigation/issues/4297
+         */
+        return (
+            <BottomTabBar
+                {...this.props}
+                activeTintColor={this.theme.tintColor || this.props.activeTintColor}
+            />
+        );
+    }
+
+}

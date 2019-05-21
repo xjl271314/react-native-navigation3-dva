@@ -20,7 +20,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import commonStyle from '../libs/commonStyle'
 import Badge from '../component/Badge'
 import FindRecommendBlock from '../component/FindRecommendBlock'
-// import Tabs from '../navigation/tabs/TabConfig'
+import Storage from '../utils/storage'
 
 @connect(({ app, home }) => ({
   login: app.login,
@@ -32,11 +32,27 @@ import FindRecommendBlock from '../component/FindRecommendBlock'
   isRefresh: home.isRefresh
 }))
 export default class Home extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     this._navListener = this.props.navigation.addListener('didFocus', () => {
       StatusBar.setBarStyle('dark-content');
       !isIphone && StatusBar.setBackgroundColor('#6a51ae');
-    });
+    })
+    let login  = await Storage.get('login')
+    if(!login){
+      this.props.navigation.navigate({
+        routeName:"Auth"
+      })
+      // this.props.dispatch(createAction('navigator/navigate')())
+      return
+    }
+    this.initData()
+  }
+
+  componentWillUnmount() {
+    this._navListener.remove();
+  }
+
+  initData() {
     // 获取聊天列表
     this.props.dispatch(createAction('home/loadChatList')(
       {
@@ -45,11 +61,6 @@ export default class Home extends Component {
       }
     ))
   }
-
-  componentWillUnmount() {
-    this._navListener.remove();
-  }
-
   onEndReached = () => {
     const {
       currentPage,

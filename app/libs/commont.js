@@ -86,7 +86,7 @@ export function ifIphoneX(iphoneXStyle, iosStyle, androidStyle) {
 
 
 //判断设备是否是ios平台
-export const isIphone = Platform.OS == 'ios' ? true : false
+export const isIphone = () => Platform.OS == 'ios' ? true : false
 
 
 /** 

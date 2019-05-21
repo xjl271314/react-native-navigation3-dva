@@ -6,7 +6,7 @@ import {
 export default {
   namespace: 'app',
   state: {
-    login: false,
+    appLogin: false,
     loading: true,
     fetching: false,
     tabs: []
@@ -19,7 +19,12 @@ export default {
   effects: {
     *loadStorage(action, { call, put }) {
       const login = yield call(Storage.get, 'login', false)
-      yield put(createAction('updateState')({ login, loading: false }))
+      yield put(createAction('updateState')({ appLogin: login, loading: false }))
+      if (!login) {
+        yield put(NavigationActions.navigate({
+          routeName: 'Login'
+        }))
+      }
     },
     *login({ payload }, { call, put }) {
       yield put(createAction('updateState')({ fetching: true }))

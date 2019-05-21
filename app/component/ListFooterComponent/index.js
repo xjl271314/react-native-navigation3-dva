@@ -12,6 +12,12 @@ import {
 } from 'react-native'
 
 const ListFooterComponent = (props) => {
+    this.loading = true
+    this.timer = setTimeout(()=>{
+        this.loading = false
+        clearTimeout(this.timer)
+    },1500)
+
     return (
         <View
             {...props}
@@ -22,9 +28,11 @@ const ListFooterComponent = (props) => {
                 }
             ]}
         >
-            <Text style={styles.text}>{
-                props.hiddenFooter ? '':props.loadEnd?'我是有底线的':'正在玩命加载中...'
-            }</Text>
+            {
+                 this.loading ? <Text style={styles.text}>{
+                    props.hiddenFooter ? '':props.loadEnd?'我是有底线的':'正在玩命加载中...'
+                }</Text>:null
+            }
         </View>
     )
 }

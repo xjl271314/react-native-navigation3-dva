@@ -53,15 +53,12 @@ export default class Login extends Component {
 
     constructor(props){
         super(props)
-        this.judgeLogin()
-
     }
     componentDidMount() {
         this._navListener = this.props.navigation.addListener('didFocus', () => {
           StatusBar.setBarStyle('dark-content');
           !isIphone && StatusBar.setBackgroundColor('#6a51ae');
         });
-        console.log('login')
       }
     
     componentWillUnmount() {
@@ -72,12 +69,6 @@ export default class Login extends Component {
         password: ''
     }
     
-    async judgeLogin(){
-        let isLogin = await AsyncStorage.getItem('login')
-        // if(isLogin){
-        //     this.props.navigation.navigate('Home')
-        // }
-    }
     login=()=>{
         AsyncStorage.setItem('login','111').then(()=>{
             this.props.navigation.navigate({
