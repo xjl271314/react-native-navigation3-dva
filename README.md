@@ -47,3 +47,8 @@ react-navigation3.x中createStackNavigator把navigationOptions 改为了 default
 https://www.jianshu.com/p/57d446fca3f0
 
 组件间通信 发送消息用 可以使用也可以直接使用react-native 提供的DeviceEventEmitter
+
+
+## 联系我
+
+目前该项目是一个学习性例子demo,我会不定期更新此项目，旨意在构造一个微信类似的即时通讯类app，如有疑问可以提issue也可以联系我 QQ:670690872
