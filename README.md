@@ -40,3 +40,10 @@ ios开发真机调试的话 如遇无法连接chrome debug问题
 
 处理react-native-gesture-handler
 react-navigation3.x中createStackNavigator把navigationOptions 改为了 defaultNavigationOptions
+
+
+#### react-native-event-bus
+
+https://www.jianshu.com/p/57d446fca3f0
+
+组件间通信 发送消息用 可以使用也可以直接使用react-native 提供的DeviceEventEmitter

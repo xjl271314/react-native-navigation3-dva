@@ -34,6 +34,7 @@ import Tab1Screen from './Tab1'
 import Tab2Screen from './Tab2'
 import Tab3Screen from './Tab3'
 import MyScreen from '../../views/My'
+import LinkingPage from '../../views/Linking'
 
 const staticTabsConfig =
     {
@@ -70,7 +71,7 @@ export default class Tabs extends Component {
         this.tabs = {
             1: {
                 screen: HomeScreen,
-                navigationOptions: ({ navigation, screenProps }) => ({
+                navigationOptions: {
                     tabBarLabel: '微信',
                     tabBarIcon: ({ tintColor }) => (
                         <Tab1Icon
@@ -79,10 +80,10 @@ export default class Tabs extends Component {
                             color={tintColor}
                         />
                     ),
-                }),
+                },
             },
             2: {
-                screen: Tab1Screen,
+                screen: LinkingPage,
                 navigationOptions: {
                     tabBarLabel: '通讯录',
                     tabBarIcon: ({ tintColor }) => (
@@ -147,6 +148,7 @@ export default class Tabs extends Component {
         else {
             tmps = { ...this.tabs }
         }
+        
         return this.newTabs = createAppContainer(
             createBottomTabNavigator(
                 tmps, {
@@ -157,7 +159,11 @@ export default class Tabs extends Component {
 render() {
     const Tabs = this._getTabs()
     return (
-        <Tabs />
+        <Tabs 
+            onNavigationStateChange={(prevState,newState,action)=>{
+                console.log(prevState,newState,action)
+            }}
+        />
     )
 }
 }

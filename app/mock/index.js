@@ -36,3 +36,17 @@ Mock.mock(FetchUrl + 'app/appTabs', {
         'id': 4
     }]
 })
+
+
+// 模拟获取我的页面个人信息
+Mock.mock(FetchUrl + 'user/getUserInfo', {
+    'code': 1,
+    'data': {
+        userName:'Starbucks',
+        userLogo:'',
+        gender:1,
+        wxCode:'aabbbccc123456',
+        area:'浙江 杭州',
+        sign:''
+    }
+})

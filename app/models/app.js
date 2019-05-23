@@ -21,7 +21,7 @@ export default {
       console.log('检查是否登录....')
       const login = yield call(Storage.get, 'login', false)
       yield put(createAction('updateState')({ appLogin: login, loading: false }))
-      console.log('当前登录状态',Boolean(login))
+      console.log('当前登录状态', Boolean(login))
       if (!login) {
         yield put(NavigationActions.navigate({
           routeName: 'Login'
@@ -56,6 +56,6 @@ export default {
   subscriptions: {
     setup({ dispatch }) {
       dispatch({ type: 'loadStorage' })
-    },
-  },
+    }
+  }
 }

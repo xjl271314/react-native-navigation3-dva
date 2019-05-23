@@ -1,8 +1,7 @@
 import { createAction, NavigationActions, Storage } from '../utils'
-import * as authService from '../services/auth'
 import {
-  loadChatList
-} from '../services/home'
+  getUserInfo
+} from '../services/user'
 
 export default {
   namespace: 'user',
@@ -16,7 +15,10 @@ export default {
   },
   effects: {
      *loadUserInfo(action,{call,put}){
-
+      const result = yield call(getUserInfo)
+      if (result && result.code == 1) {
+        yield put(createAction('updateState')({ userInfo: result.data }))
+      }
      }
   },
   subscriptions: {

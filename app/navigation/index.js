@@ -10,6 +10,8 @@ import DiscoveryPage from '../views/Discovery'
 import LoginPage from '../views/Login'
 import DetailPage from '../views/Detail'
 import WebViewPage from '../views/WebView'
+import LinkingPage from '../views/Linking'
+
 
 //App主页面
 const AppStack = createStackNavigator({
@@ -24,6 +26,9 @@ const AppStack = createStackNavigator({
     },
     WebView:{
         screen:WebViewPage
+    },
+    Linking:{
+        screen:LinkingPage
     }
 }, {
         initialRouteName: 'Home',

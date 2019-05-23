@@ -31,7 +31,7 @@ const typesColor = {
     }
 }
 const Button = (props) => {
-    const { onPress, title, backgroundColor } = props
+    const { onPress, title, backgroundColor,style } = props
     const buttonType = props.buttonType || 'TouchableHighlight'
     const type = props.type || 'primary'
     const disabledColor = props.disabledColor || '#ccc'
@@ -39,19 +39,19 @@ const Button = (props) => {
     const TouchButton = () => {
         switch (buttonType) {
             case 'TouchableHighlight':
-                return <TouchableHighlight {...props} style={[styles.normalButton]}>{props.children}</TouchableHighlight>
+                return <TouchableHighlight {...props} style={[styles.normalButton,style]}>{props.children}</TouchableHighlight>
                 break;
 
             case 'TouchableWithoutFeedback':
-                return <TouchableWithoutFeedback {...props} style={[styles.normalButton]}>{props.children}</TouchableWithoutFeedback>
+                return <TouchableWithoutFeedback {...props} style={[styles.normalButton,style]}>{props.children}</TouchableWithoutFeedback>
                 break;
 
             case 'TouchableOpacity':
-                return <TouchableOpacity {...props} style={[styles.normalButton]}>{props.children}</TouchableOpacity>
+                return <TouchableOpacity {...props} style={[styles.normalButton,style]}>{props.children}</TouchableOpacity>
                 break;
 
             default:
-                return <TouchableHighlight {...props} style={[styles.normalButton]}>{props.children}</TouchableHighlight>
+                return <TouchableHighlight {...props} style={[styles.normalButton,style]}>{props.children}</TouchableHighlight>
                 break;
         }
     }

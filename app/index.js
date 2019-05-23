@@ -25,6 +25,19 @@ const persistConfig = {
   stateReconciler: autoMergeLevel2
 }
 
+/** 
+ * 
+ * 详细配置项
+ * onError: 　　　　    effect 执行错误或 subscription 通过 done 主动抛错时触发，可用于管理全局出错状态
+ * onAction: 　　　　   在 action 被 dispatch 时触发，用于注册 redux 中间件
+ * onStateChange: 　   state 改变时触发，可用于同步 state 到 localStorage，服务器端等
+ * onReducer:          封装 reducer 执行，全局拦截reducer
+ * onEffect:           封装 effect 执行，全局拦截effect
+ * onHmr:              全局处理热替换
+ * extraReducers:      指定额外的 reducer
+ * extraEnhancers:     指定额外的 StoreEnhancer
+ * 
+*/
 
 const app = dva({
   initialState: {},
